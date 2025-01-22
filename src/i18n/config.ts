@@ -34,8 +34,20 @@ const ptTranslations = {
     "groupCreationError": "Erro ao criar grupo",
     "error": "Erro",
     "createNewGroup": "Criar Novo Grupo",
-    "welcomeMessage": "Bem-vindo ao @Work Admin",
-    "selectOption": "Selecione uma opção no menu lateral para começar"
+    "userInformation": "Informações do Usuário",
+    "registrationData": "Seus dados cadastrais",
+    "appearance": "Aparência",
+    "customizeTheme": "Personalize o tema do sistema",
+    "chooseTheme": "Escolha entre tema claro, escuro ou do sistema",
+    "changeLanguage": "Altere o idioma do sistema",
+    "chooseLanguage": "Escolha entre Português e Inglês",
+    "currentPassword": "Senha Atual",
+    "newPassword": "Nova Senha",
+    "confirmNewPassword": "Confirmar Nova Senha",
+    "passwordsDoNotMatch": "As senhas não coincidem",
+    "success": "Sucesso",
+    "passwordChanged": "Senha alterada com sucesso",
+    "updatePassword": "Atualize sua senha de acesso"
   }
 };
 
@@ -72,8 +84,20 @@ const enTranslations = {
     "groupCreationError": "Error creating group",
     "error": "Error",
     "createNewGroup": "Create New Group",
-    "welcomeMessage": "Welcome to @Work Admin",
-    "selectOption": "Select an option from the side menu to begin"
+    "userInformation": "User Information",
+    "registrationData": "Your registration data",
+    "appearance": "Appearance",
+    "customizeTheme": "Customize system theme",
+    "chooseTheme": "Choose between light, dark, or system theme",
+    "changeLanguage": "Change system language",
+    "chooseLanguage": "Choose between Portuguese and English",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "success": "Success",
+    "passwordChanged": "Password changed successfully",
+    "updatePassword": "Update your access password"
   }
 };
 
