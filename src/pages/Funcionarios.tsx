@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { GrupoAccordionItem } from "@/components/pages/funcionarios/GrupoAccordionItem";
 import { CreateGroupDialog } from "@/components/pages/funcionarios/CreateGroupDialog";
 import { useFuncionarios } from "@/hooks/pages/useFuncionarios";
-import Layout from "@/components/Layout";
 
 interface Grupo {
   Nome: string;
@@ -18,7 +17,7 @@ const Funcionarios = () => {
   const { createGrupo, grupos, gruposError, isCreatingGrupo, isLoadingGrupos } = useFuncionarios()
 
   return (
-    <Layout>
+    <>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">{t('employeeGroups')}</h2>
         <CreateGroupDialog
@@ -42,7 +41,7 @@ const Funcionarios = () => {
           ))}
         </Accordion>
       )}
-    </Layout>
+    </>
   );
 };
 
