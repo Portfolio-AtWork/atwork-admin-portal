@@ -9,18 +9,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface Funcionario {
-  ID: string;
-  Nome: string;
-  ST_Status: string;
-  Email: string;
-}
+import { FuncionariosByGrupoResult } from "@/hooks/pages/useFuncionarios";
 
-interface FuncionariosTableProps {
-  funcionarios: Funcionario[];
-}
-
-export const FuncionariosTable = ({ funcionarios }: FuncionariosTableProps) => {
+export const FuncionariosTable = ({ funcionarios }: { funcionarios: FuncionariosByGrupoResult[] }) => {
   const { t } = useTranslation();
 
   const getStatusDisplay = (status: string) => {
@@ -45,7 +36,7 @@ export const FuncionariosTable = ({ funcionarios }: FuncionariosTableProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {funcionarios.map((funcionario: Funcionario) => (
+          {funcionarios.map(funcionario => (
             <TableRow key={funcionario.ID}>
               <TableCell>{funcionario.Nome}</TableCell>
               <TableCell>{funcionario.Email}</TableCell>

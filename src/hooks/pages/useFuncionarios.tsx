@@ -1,76 +1,28 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useToast } from "@/components/ui/use-toast";
-import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
 import api from "@/config/api";
 
-interface CreateGrupoRequest {
-  Nome: string;
+export interface FuncionariosByGrupoRequest {
+    ID_Grupo: string
 }
 
-interface GetGrupoRequest {
+export interface FuncionariosByGrupoResult {
     ID: string;
-    Nome: string
+    Nome: string;
+    ST_Status: string;
+    Email: string
 }
 
-const getGrupos = async () => {
-  const response = await api.get<{}, GetGrupoRequest[]>("grupo/getGruposByLogin")
-  
-  if (!response.ok) {
-    throw new Error("Erro ao buscar grupos");
-  }
+export const useFuncionarios = (idGrupo: string) => {
+  return useQuery({
+    queryKey: ['funcionarios', idGrupo],
+    queryFn: async () => {
+      const response = await api.get<FuncionariosByGrupoRequest, FuncionariosByGrupoResult[]>('funcionario/getFuncionariosByGrupo', { ID_Grupo: idGrupo })
 
-  return response.value;
-};
+      if (!response.ok) {
+        throw new Error('Erro ao buscar funcionários do grupo');
+      }
 
-const criarGrupo = async (nome: string) : Promise<boolean> => {
-  const response = await api.post<CreateGrupoRequest, boolean>("grupo/createGrupo", { Nome: nome })
-  
-  if (!response.ok) {
-    throw new Error("Erro ao criar grupo");
-  }
-
-  return response.value;
-};
-
-export const useFuncionarios = () => {
-  const { t } = useTranslation();
-  const { toast } = useToast();
-  const queryClient = useQueryClient();
-
-  const {
-    data: grupos,
-    isLoading: isLoadingGrupos,
-    error: gruposError,
-  } = useQuery({
-    queryKey: ["grupos"],
-    queryFn: getGrupos,
+      return response.value;
+    }
   });
-
-  const createGrupoMutation = useMutation({
-    mutationFn: (data: CreateGrupoRequest) => criarGrupo(data.Nome),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["grupos"] });
-      toast({
-        title: t("groupCreated"),
-        description: t("groupCreatedSuccess"),
-      });
-
-
-    },
-    onError: () => {
-      toast({
-        title: t("error"),
-        description: t("groupCreationError"),
-        variant: "destructive",
-      });
-    },
-  });
-
-  return {
-    grupos,
-    isLoadingGrupos,
-    gruposError,
-    createGrupo: createGrupoMutation.mutate,
-    isCreatingGrupo: createGrupoMutation.isPending,
-  };
 };

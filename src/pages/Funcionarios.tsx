@@ -3,7 +3,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { useTranslation } from "react-i18next";
 import { GrupoAccordionItem } from "@/components/pages/funcionarios/GrupoAccordionItem";
 import { CreateGroupDialog } from "@/components/pages/funcionarios/CreateGroupDialog";
-import { useFuncionarios } from "@/hooks/pages/useFuncionarios";
+import { useGrupos } from "@/hooks/pages/useGrupos";
 
 interface Grupo {
   Nome: string;
@@ -14,7 +14,7 @@ const Funcionarios = () => {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
 
-  const { createGrupo, grupos, gruposError, isCreatingGrupo, isLoadingGrupos } = useFuncionarios()
+  const { createGrupo, grupos, gruposError, isCreatingGrupo, isLoadingGrupos } = useGrupos()
 
   return (
     <>

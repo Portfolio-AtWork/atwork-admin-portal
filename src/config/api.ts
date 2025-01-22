@@ -90,13 +90,15 @@ export async function get<TRequest, TResponse>(
   values?: TRequest
 ): Promise<ObjectResponse<TResponse>> {
   try {
-    const url = buildApiUrl(endpoint);
+    const url = new URL(buildApiUrl(endpoint));
+    const searchParams = new URLSearchParams(values as never);
+    url.search = searchParams.toString();
+
     const response = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
-        ...values,
+        // "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${localStorage.getItem('token') as string}`
       }
     });
@@ -119,13 +121,14 @@ export async function _delete<TRequest, TResponse>(
   values?: TRequest
 ): Promise<ObjectResponse<TResponse>> {
   try {
-    const url = buildApiUrl(endpoint);
+    const url = new URL(buildApiUrl(endpoint));
+    const searchParams = new URLSearchParams(values as never);
+    url.search = searchParams.toString();
+
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        
-        ...values,
         Authorization: `Bearer ${localStorage.getItem('token') as string}`
       },
       mode: 'cors'

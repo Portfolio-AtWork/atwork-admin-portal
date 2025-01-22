@@ -39,7 +39,7 @@ const Login = () => {
         navigate("/home");
       }
     },
-    onError: (error) => {
+    onError: () => {
       toast({
         title: "Erro ao fazer login",
         description: "Verifique suas credenciais e tente novamente.",

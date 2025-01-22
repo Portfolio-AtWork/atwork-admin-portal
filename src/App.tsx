@@ -6,7 +6,6 @@ import { LanguageProvider } from "./contexts/LanguageContext"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import './i18n/config'
 
-// Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

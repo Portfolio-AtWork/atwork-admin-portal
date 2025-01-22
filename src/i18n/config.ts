@@ -47,7 +47,9 @@ const ptTranslations = {
     "passwordsDoNotMatch": "As senhas não coincidem",
     "success": "Sucesso",
     "passwordChanged": "Senha alterada com sucesso",
-    "updatePassword": "Atualize sua senha de acesso"
+    "updatePassword": "Atualize sua senha de acesso",
+    "welcomeMessage": "Seja bem-vindo!",
+    "selectOption": "Selectione uma opção para começar"
   }
 };
 
