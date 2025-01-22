@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import SyncBackend from 'i18next-sync-fs-backend';
 
 const ptTranslations = {
   translation: {
@@ -34,7 +33,9 @@ const ptTranslations = {
     "groupCreatedSuccess": "Grupo criado com sucesso!",
     "groupCreationError": "Erro ao criar grupo",
     "error": "Erro",
-    "createNewGroup": "Criar Novo Grupo"
+    "createNewGroup": "Criar Novo Grupo",
+    "welcomeMessage": "Bem-vindo ao @Work Admin",
+    "selectOption": "Selecione uma opção no menu lateral para começar"
   }
 };
 
@@ -70,7 +71,9 @@ const enTranslations = {
     "groupCreatedSuccess": "Group created successfully!",
     "groupCreationError": "Error creating group",
     "error": "Error",
-    "createNewGroup": "Create New Group"
+    "createNewGroup": "Create New Group",
+    "welcomeMessage": "Welcome to @Work Admin",
+    "selectOption": "Select an option from the side menu to begin"
   }
 };
 
