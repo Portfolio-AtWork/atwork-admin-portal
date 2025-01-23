@@ -26,16 +26,11 @@
   "loadingEmployees": "Loading employees...",
   "errorLoadingEmployees": "Error loading employees from group",
   "groupName": "Group name",
-  "createGroup": "Create Group",
+  "create": "Create",
   "creating": "Creating...",
-  "groupCreated": "Group Created",
-  "groupCreatedSuccess": "Group created successfully!",
-  "groupCreationError": "Error creating group",
+  "new": "New",
+  "success": "Success",
   "error": "Error",
-  "createNewGroup": "Create New Group",
-  "createEmployee": "Create Employee",
-  "createNewEmployee": "Create New Employee",
-  "employeeCreated": "Employee Created",
-  "employeeCreatedSuccess": "Employee created successfully!",
-  "employeeCreationError": "Error creating employee"
+  "createdSuccess": "Created successfully!",
+  "creationError": "Error creating"
 }

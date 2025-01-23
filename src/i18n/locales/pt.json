@@ -24,21 +24,16 @@
     "loadingEmployees": "Carregando funcionários...",
     "errorLoadingEmployees": "Erro ao carregar funcionários do grupo",
     "groupName": "Nome do grupo",
-    "createGroup": "Criar Grupo",
+    "create": "Criar",
     "creating": "Criando...",
-    "groupCreated": "Grupo Criado",
-    "groupCreatedSuccess": "Grupo criado com sucesso!",
-    "groupCreationError": "Erro ao criar grupo",
+    "new": "Novo",
+    "success": "Sucesso",
     "error": "Erro",
-    "createNewGroup": "Criar Novo Grupo",
-    "createEmployee": "Criar Funcionário",
-    "createNewEmployee": "Criar Novo Funcionário",
+    "createdSuccess": "Criado com sucesso!",
+    "creationError": "Erro ao criar",
     "login": "Login",
     "password": "Senha",
     "confirmPassword": "Confirmar Senha",
-    "selectGroup": "Selecionar Grupo",
-    "employeeCreated": "Funcionário Criado",
-    "employeeCreatedSuccess": "Funcionário criado com sucesso!",
-    "employeeCreationError": "Erro ao criar funcionário"
+    "selectGroup": "Selecionar Grupo"
   }
 }

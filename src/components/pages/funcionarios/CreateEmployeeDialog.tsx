@@ -56,12 +56,12 @@ export const CreateEmployeeDialog = ({
       <DialogTrigger asChild>
         <Button variant="outline">
           <UserPlus className="mr-2" />
-          {t('createEmployee')}
+          {t('create')}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('createNewEmployee')}</DialogTitle>
+          <DialogTitle>{t('new')} {t('employees')}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
@@ -113,7 +113,7 @@ export const CreateEmployeeDialog = ({
           </div>
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? t('creating') : t('createEmployee')}
+              {isPending ? t('creating') : t('create')}
             </Button>
           </DialogFooter>
         </form>
