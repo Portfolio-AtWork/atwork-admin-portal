@@ -30,6 +30,15 @@
     "groupCreatedSuccess": "Grupo criado com sucesso!",
     "groupCreationError": "Erro ao criar grupo",
     "error": "Erro",
-    "createNewGroup": "Criar Novo Grupo"
+    "createNewGroup": "Criar Novo Grupo",
+    "createEmployee": "Criar Funcionário",
+    "createNewEmployee": "Criar Novo Funcionário",
+    "login": "Login",
+    "password": "Senha",
+    "confirmPassword": "Confirmar Senha",
+    "selectGroup": "Selecionar Grupo",
+    "employeeCreated": "Funcionário Criado",
+    "employeeCreatedSuccess": "Funcionário criado com sucesso!",
+    "employeeCreationError": "Erro ao criar funcionário"
   }
 }

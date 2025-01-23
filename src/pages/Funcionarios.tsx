@@ -3,7 +3,9 @@ import { Accordion } from "@/components/ui/accordion";
 import { useTranslation } from "react-i18next";
 import { GrupoAccordionItem } from "@/components/pages/funcionarios/GrupoAccordionItem";
 import { CreateGroupDialog } from "@/components/pages/funcionarios/CreateGroupDialog";
+import { CreateEmployeeDialog } from "@/components/pages/funcionarios/CreateEmployeeDialog";
 import { useGrupos } from "@/hooks/pages/useGrupos";
+import { useCreateFuncionario } from "@/hooks/pages/useFuncionarios";
 
 interface Grupo {
   Nome: string;
@@ -12,20 +14,30 @@ interface Grupo {
 
 const Funcionarios = () => {
   const { t } = useTranslation();
-  const [open, setOpen] = React.useState(false);
+  const [openGroup, setOpenGroup] = React.useState(false);
+  const [openEmployee, setOpenEmployee] = React.useState(false);
 
-  const { createGrupo, grupos, gruposError, isCreatingGrupo, isLoadingGrupos } = useGrupos()
+  const { createGrupo, grupos, gruposError, isCreatingGrupo, isLoadingGrupos } = useGrupos();
+  const createFuncionarioMutation = useCreateFuncionario();
 
   return (
     <>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">{t('employeeGroups')}</h2>
-        <CreateGroupDialog
-          open={open}
-          onOpenChange={setOpen}
-          onSubmit={createGrupo}
-          isPending={isCreatingGrupo}
-        />
+        <div className="flex gap-2">
+          <CreateEmployeeDialog
+            open={openEmployee}
+            onOpenChange={setOpenEmployee}
+            onSubmit={createFuncionarioMutation.mutate}
+            isPending={createFuncionarioMutation.isPending}
+          />
+          <CreateGroupDialog
+            open={openGroup}
+            onOpenChange={setOpenGroup}
+            onSubmit={createGrupo}
+            isPending={isCreatingGrupo}
+          />
+        </div>
       </div>
       
       {isLoadingGrupos && <p>{t('loadingGroups')}</p>}

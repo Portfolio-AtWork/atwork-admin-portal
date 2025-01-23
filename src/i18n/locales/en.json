@@ -14,8 +14,11 @@
   "english": "English",
   "employeeGroups": "Employee Groups",
   "name": "Name",
+  "login": "Login",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
   "email": "Email",
-  "status": "Status",
+  "selectGroup": "Select Group",
   "active": "Active",
   "canceled": "Canceled",
   "loadingGroups": "Loading groups...",
@@ -29,5 +32,10 @@
   "groupCreatedSuccess": "Group created successfully!",
   "groupCreationError": "Error creating group",
   "error": "Error",
-  "createNewGroup": "Create New Group"
+  "createNewGroup": "Create New Group",
+  "createEmployee": "Create Employee",
+  "createNewEmployee": "Create New Employee",
+  "employeeCreated": "Employee Created",
+  "employeeCreatedSuccess": "Employee created successfully!",
+  "employeeCreationError": "Error creating employee"
 }
