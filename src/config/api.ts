@@ -98,7 +98,7 @@ export async function get<TRequest, TResponse>(
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // "Access-Control-Allow-Origin": "*",
+        'Access-Control-Allow-Origin': '*',
         Authorization: `Bearer ${localStorage.getItem('token') as string}`,
       },
     });
