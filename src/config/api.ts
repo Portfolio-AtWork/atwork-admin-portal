@@ -29,7 +29,7 @@ export interface ObjectResponse<T> {
 
 export async function post<TRequest, TResponse>(
   endpoint: string,
-  values?: TRequest
+  values?: TRequest,
 ): Promise<ObjectResponse<TResponse>> {
   try {
     const url = buildApiUrl(endpoint);
@@ -37,10 +37,10 @@ export async function post<TRequest, TResponse>(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token') as string}`
+        Authorization: `Bearer ${localStorage.getItem('token') as string}`,
       },
       body: JSON.stringify(values),
-      mode: 'cors'
+      mode: 'cors',
     });
 
     if (!response.ok) {
@@ -58,7 +58,7 @@ export async function post<TRequest, TResponse>(
 
 export async function put<TRequest, TResponse>(
   endpoint: string,
-  values?: TRequest
+  values?: TRequest,
 ): Promise<ObjectResponse<TResponse>> {
   try {
     const url = buildApiUrl(endpoint);
@@ -66,10 +66,10 @@ export async function put<TRequest, TResponse>(
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token') as string}`
+        Authorization: `Bearer ${localStorage.getItem('token') as string}`,
       },
       body: JSON.stringify(values),
-      mode: 'cors'
+      mode: 'cors',
     });
 
     if (!response.ok) {
@@ -87,7 +87,7 @@ export async function put<TRequest, TResponse>(
 
 export async function get<TRequest, TResponse>(
   endpoint: string,
-  values?: TRequest
+  values?: TRequest,
 ): Promise<ObjectResponse<TResponse>> {
   try {
     const url = new URL(buildApiUrl(endpoint));
@@ -99,8 +99,8 @@ export async function get<TRequest, TResponse>(
       headers: {
         'Content-Type': 'application/json',
         // "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${localStorage.getItem('token') as string}`
-      }
+        Authorization: `Bearer ${localStorage.getItem('token') as string}`,
+      },
     });
 
     if (!response.ok) {
@@ -118,7 +118,7 @@ export async function get<TRequest, TResponse>(
 
 export async function _delete<TRequest, TResponse>(
   endpoint: string,
-  values?: TRequest
+  values?: TRequest,
 ): Promise<ObjectResponse<TResponse>> {
   try {
     const url = new URL(buildApiUrl(endpoint));
@@ -129,9 +129,9 @@ export async function _delete<TRequest, TResponse>(
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token') as string}`
+        Authorization: `Bearer ${localStorage.getItem('token') as string}`,
       },
-      mode: 'cors'
+      mode: 'cors',
     });
 
     if (!response.ok) {
@@ -147,4 +147,4 @@ export async function _delete<TRequest, TResponse>(
   }
 }
 
-export default { post, put, get, delete: _delete }
+export default { post, put, get, delete: _delete };

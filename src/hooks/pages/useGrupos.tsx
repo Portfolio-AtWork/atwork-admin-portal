@@ -1,41 +1,46 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useToast } from "@/components/ui/use-toast";
-import { useTranslation } from "react-i18next";
-import api from "@/config/api";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useToast } from '@/components/ui/use-toast';
+import { useTranslation } from 'react-i18next';
+import api from '@/config/api';
 
 interface CreateGrupoRequest {
   Nome: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface GetGrupoRequest {};
+interface GetGrupoRequest {}
 
-interface GetGrupoResult{
-    ID: string;
-    Nome: string
+interface GetGrupoResult {
+  ID: string;
+  Nome: string;
 }
 
 const getGrupos = async () => {
-  const response = await api.get<GetGrupoRequest, GetGrupoResult[]>("grupo/getGruposByLogin")
-  
+  const response = await api.get<GetGrupoRequest, GetGrupoResult[]>(
+    'grupo/getGruposByLogin',
+  );
+
   if (!response.ok) {
-    throw new Error("Erro ao buscar grupos");
+    throw new Error('Erro ao buscar grupos');
   }
 
   return response.value;
 };
 
-const criarGrupo = async (nome: string) : Promise<boolean> => {
-  const response = await api.post<CreateGrupoRequest, boolean>("grupo/createGrupo", { Nome: nome })
-  
+const criarGrupo = async (nome: string): Promise<boolean> => {
+  const response = await api.post<CreateGrupoRequest, boolean>(
+    'grupo/createGrupo',
+    { Nome: nome },
+  );
+
   if (!response.ok) {
-    throw new Error("Erro ao criar grupo");
+    throw new Error('Erro ao criar grupo');
   }
 
   return response.value;
 };
 
-export const useGrupos = () => {
+export function useGrupos() {
   const { t } = useTranslation();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -45,26 +50,24 @@ export const useGrupos = () => {
     isLoading: isLoadingGrupos,
     error: gruposError,
   } = useQuery({
-    queryKey: ["grupos"],
+    queryKey: ['grupos'],
     queryFn: getGrupos,
   });
 
   const createGrupoMutation = useMutation({
     mutationFn: (data: CreateGrupoRequest) => criarGrupo(data.Nome),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["grupos"] });
+      queryClient.invalidateQueries({ queryKey: ['grupos'] });
       toast({
-        title: t("groupCreated"),
-        description: t("groupCreatedSuccess"),
+        title: t('groupCreated'),
+        description: t('groupCreatedSuccess'),
       });
-
-
     },
     onError: () => {
       toast({
-        title: t("error"),
-        description: t("groupCreationError"),
-        variant: "destructive",
+        title: t('error'),
+        description: t('groupCreationError'),
+        variant: 'destructive',
       });
     },
   });
@@ -76,4 +79,4 @@ export const useGrupos = () => {
     createGrupo: createGrupoMutation.mutate,
     isCreatingGrupo: createGrupoMutation.isPending,
   };
-};
+}
