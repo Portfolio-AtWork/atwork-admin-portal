@@ -1,8 +1,8 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogContent,
@@ -10,16 +10,16 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useGrupos } from "@/hooks/pages/useGrupos";
-import { UserPlus } from "lucide-react";
+} from '@/components/ui/select';
+import { useGrupos } from '@/hooks/pages/useGrupos';
+import { UserPlus } from 'lucide-react';
 
 interface CreateEmployeeDialogProps {
   open: boolean;
@@ -44,7 +44,8 @@ export const CreateEmployeeDialog = ({
   isPending,
 }: CreateEmployeeDialogProps) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, setValue, watch } = useForm<NovoFuncionarioForm>();
+  const { register, handleSubmit, setValue, watch } =
+    useForm<NovoFuncionarioForm>();
   const { grupos } = useGrupos();
 
   const handleGroupSelect = (value: string) => {
@@ -61,7 +62,7 @@ export const CreateEmployeeDialog = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('new')} {t('employees')}</DialogTitle>
+          <DialogTitle>{t('new')}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
