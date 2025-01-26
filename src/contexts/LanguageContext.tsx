@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { I18nextProvider } from "react-i18next";
 
 type Language = 'pt' | 'en';
 
@@ -10,7 +9,9 @@ interface LanguageContextType {
   toggleLanguage: () => void;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation();
@@ -25,11 +26,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider 
-      value={{ 
-        language: i18n.language as Language, 
-        setLanguage, 
-        toggleLanguage 
+    <LanguageContext.Provider
+      value={{
+        language: i18n.language as Language,
+        setLanguage,
+        toggleLanguage,
       }}
     >
       {children}

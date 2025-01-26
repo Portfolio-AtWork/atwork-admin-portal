@@ -11,15 +11,11 @@ import {
   DialogTrigger,
   DialogFooter,
 } from '@/components/ui/dialog';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { useGrupos } from '@/hooks/pages/useGrupos';
-import { UserPlus } from 'lucide-react';
+import { GrupoSelect } from '@/components/inputs/GrupoSelect';
+
+import { SeparatorHorizontal, UserPlus } from 'lucide-react';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@radix-ui/react-separator';
 
 interface CreateEmployeeDialogProps {
   open: boolean;
@@ -44,9 +40,8 @@ export const CreateEmployeeDialog = ({
   isPending,
 }: CreateEmployeeDialogProps) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, setValue, watch } =
+  const { register, handleSubmit, setValue, getValues } =
     useForm<NovoFuncionarioForm>();
-  const { grupos } = useGrupos();
 
   const handleGroupSelect = (value: string) => {
     setValue('ID_Grupo', value);
@@ -64,20 +59,24 @@ export const CreateEmployeeDialog = ({
         <DialogHeader>
           <DialogTitle>{t('new')}</DialogTitle>
         </DialogHeader>
+        <Separator />
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
+            <Label>{t('name')}</Label>
             <Input
               placeholder={t('name')}
               {...register('Nome', { required: true })}
             />
           </div>
           <div className="space-y-2">
+            <Label>{t('login')}</Label>
             <Input
               placeholder={t('login')}
               {...register('Login', { required: true })}
             />
           </div>
           <div className="space-y-2">
+            <Label>{t('password')}</Label>
             <Input
               type="password"
               placeholder={t('password')}
@@ -85,6 +84,7 @@ export const CreateEmployeeDialog = ({
             />
           </div>
           <div className="space-y-2">
+            <Label>{t('confirmPassword')}</Label>
             <Input
               type="password"
               placeholder={t('confirmPassword')}
@@ -92,6 +92,7 @@ export const CreateEmployeeDialog = ({
             />
           </div>
           <div className="space-y-2">
+            <Label>{t('email')}</Label>
             <Input
               type="email"
               placeholder={t('email')}
@@ -99,18 +100,11 @@ export const CreateEmployeeDialog = ({
             />
           </div>
           <div className="space-y-2">
-            <Select onValueChange={handleGroupSelect}>
-              <SelectTrigger>
-                <SelectValue placeholder={t('selectGroup')} />
-              </SelectTrigger>
-              <SelectContent>
-                {grupos?.map((grupo) => (
-                  <SelectItem key={grupo.ID} value={grupo.ID}>
-                    {grupo.Nome}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label>{t('group')}</Label>
+            <GrupoSelect
+              onValueChange={handleGroupSelect}
+              value={getValues().ID_Grupo}
+            />
           </div>
           <DialogFooter>
             <Button type="submit" disabled={isPending}>

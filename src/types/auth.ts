@@ -24,4 +24,5 @@ export interface LoginResponse {
   notifications: Notification[];
   ok: boolean;
   nome: string;
+  email: string;
 }
