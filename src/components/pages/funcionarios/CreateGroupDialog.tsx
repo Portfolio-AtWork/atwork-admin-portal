@@ -1,7 +1,8 @@
-import { useTranslation } from 'react-i18next';
+import { Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogContent,
@@ -10,7 +11,7 @@ import {
   DialogTrigger,
   DialogFooter,
 } from '@/components/ui/dialog';
-import { Plus } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import { MessagesResource } from '@/i18n/resources';
 
 interface CreateGroupDialogProps {

@@ -1,3 +1,5 @@
+import { Label } from '../ui/label';
+
 import {
   Select,
   SelectContent,
@@ -6,7 +8,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useGrupos } from '@/hooks/pages/useGrupos';
-import { Label } from '../ui/label';
 import { MessagesResource } from '@/i18n/resources';
 
 type GrupoSelectProps = {

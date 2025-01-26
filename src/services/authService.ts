@@ -1,5 +1,5 @@
-import { LoginRequest, LoginResponse } from "@/types/auth";
 import { buildApiUrl } from "@/config/api";
+import { LoginRequest, LoginResponse } from "@/types/auth";
 
 export const loginUser = async (credentials: LoginRequest): Promise<LoginResponse> => {
   const response = await fetch(buildApiUrl("login/auth"), {

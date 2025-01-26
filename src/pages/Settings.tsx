@@ -1,8 +1,8 @@
-import { Separator } from '@/components/ui/separator';
-import { UserInfoCard } from '@/components/settings/UserInfoCard';
 import { AppearanceCard } from '@/components/settings/AppearanceCard';
 import { LanguageCard } from '@/components/settings/LanguageCard';
 import { PasswordChangeCard } from '@/components/settings/PasswordChangeCard';
+import { UserInfoCard } from '@/components/settings/UserInfoCard';
+import { Separator } from '@/components/ui/separator';
 import { MessagesResource } from '@/i18n/resources';
 
 const Settings = () => {

@@ -1,11 +1,12 @@
+import { FuncionariosTable } from './FuncionariosTable';
+
+import { LoadingMessage } from '@/components/LoadingMessage';
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { FuncionariosTable } from './FuncionariosTable';
 import { useFuncionarios } from '@/hooks/pages/useFuncionarios';
-import { LoadingMessage } from '@/components/LoadingMessage';
 
 interface Grupo {
   Nome: string;

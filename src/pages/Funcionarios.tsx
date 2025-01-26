@@ -1,13 +1,14 @@
 import { useMemo, useState } from 'react';
-import { Accordion } from '@/components/ui/accordion';
 import { useTranslation } from 'react-i18next';
-import { GrupoAccordionItem } from '@/components/pages/funcionarios/GrupoAccordionItem';
-import { CreateGroupDialog } from '@/components/pages/funcionarios/CreateGroupDialog';
-import { CreateEmployeeDialog } from '@/components/pages/funcionarios/CreateEmployeeDialog';
-import { useGrupos } from '@/hooks/pages/useGrupos';
-import { useFuncionarios } from '@/hooks/pages/useFuncionarios';
+
 import { PageHeader } from '@/components/layout/PageHeader';
 import { LoadingMessage } from '@/components/LoadingMessage';
+import { CreateEmployeeDialog } from '@/components/pages/funcionarios/CreateEmployeeDialog';
+import { CreateGroupDialog } from '@/components/pages/funcionarios/CreateGroupDialog';
+import { GrupoAccordionItem } from '@/components/pages/funcionarios/GrupoAccordionItem';
+import { Accordion } from '@/components/ui/accordion';
+import { useFuncionarios } from '@/hooks/pages/useFuncionarios';
+import { useGrupos } from '@/hooks/pages/useGrupos';
 import { MessagesResource } from '@/i18n/resources';
 
 const Funcionarios = () => {

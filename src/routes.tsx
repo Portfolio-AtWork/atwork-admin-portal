@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Settings from "./pages/Settings";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Index from "./pages/Index";
-import Funcionarios from "./pages/Funcionarios";
+
 import Layout from "./components/Layout";
+import Funcionarios from "./pages/Funcionarios";
+import Home from "./pages/Home";
+import Index from "./pages/Index";
+import Login from "./pages/Login";
+import Settings from "./pages/Settings";
 
 export function AppRoutes() {
   return (

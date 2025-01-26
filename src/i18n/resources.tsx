@@ -1,5 +1,5 @@
-import labels from './locales/pt.json';
 import { createProxyHandler } from './createProxyHandler';
+import labels from './locales/pt.json';
 import { StringWithOptionalParams } from './types';
 
 type MessagesKeys = keyof typeof labels.translation;

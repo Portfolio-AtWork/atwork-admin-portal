@@ -1,6 +1,7 @@
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { UseFormRegisterReturn } from 'react-hook-form';
+
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface TextInputProps {
   label: string;

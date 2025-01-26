@@ -1,6 +1,6 @@
-import { Home, Users, Settings, LogOut } from 'lucide-react';
+import { Home, LogOut, Settings, Users } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import {
   Sidebar,
   SidebarContent,
@@ -15,7 +15,6 @@ import { MessagesResource } from '@/i18n/resources';
 
 export function AppSidebar() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const items = [
     { title: MessagesResource.DASHBOARD, icon: Home, url: '/home' },

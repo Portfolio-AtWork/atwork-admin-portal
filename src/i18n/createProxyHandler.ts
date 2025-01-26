@@ -1,5 +1,6 @@
-import { StringWithOptionalParams } from './types';
 import { useTranslation } from 'react-i18next';
+
+import { StringWithOptionalParams } from './types';
 
 export type ResourceHandler<
   TKeys extends keyof Record<string, StringWithOptionalParams>,

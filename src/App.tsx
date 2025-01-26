@@ -1,9 +1,12 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { BrowserRouter } from "react-router-dom"
+
+import { LanguageProvider } from "./contexts/LanguageContext"
+import { AppRoutes } from "./routes"
+
 import { ThemeProvider } from "@/components/theme/ThemeProvider"
 import { Toaster } from "@/components/ui/toaster"
-import { BrowserRouter } from "react-router-dom"
-import { AppRoutes } from "./routes"
-import { LanguageProvider } from "./contexts/LanguageContext"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
 import './i18n/config'
 
 const queryClient = new QueryClient({

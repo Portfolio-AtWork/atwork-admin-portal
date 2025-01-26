@@ -6,9 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { FuncionariosByGrupoResult } from '@/hooks/pages/useFuncionarios';
 import { MessagesResource } from '@/i18n/resources';
 
-import { FuncionariosByGrupoResult } from '@/hooks/pages/useFuncionarios';
 
 export const FuncionariosTable = ({
   funcionarios,

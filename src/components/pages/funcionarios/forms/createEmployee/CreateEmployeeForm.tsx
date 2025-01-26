@@ -1,11 +1,13 @@
-import { GrupoSelect } from '@/components/inputs/GrupoSelect';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { DialogFooter } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { createEmployeeValidationSchema } from './CreateEmployeeValidation';
+import { useForm } from 'react-hook-form';
+
 import { NovoFuncionarioForm } from './CreateEmployeeTypes';
+import { createEmployeeValidationSchema } from './CreateEmployeeValidation';
+
+import { GrupoSelect } from '@/components/inputs/GrupoSelect';
 import { TextField } from '@/components/inputs/TextField';
+import { Button } from '@/components/ui/button';
+import { DialogFooter } from '@/components/ui/dialog';
 import { MessagesResource } from '@/i18n/resources';
 
 export const CreateEmployeeForm = ({ isPending, onSubmit }) => {

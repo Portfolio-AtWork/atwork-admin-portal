@@ -1,3 +1,4 @@
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import {
   Card,
   CardContent,
@@ -5,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { MessagesResource } from '@/i18n/resources';
 
 export const AppearanceCard = () => {

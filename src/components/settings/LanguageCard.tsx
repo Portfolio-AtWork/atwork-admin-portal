@@ -1,3 +1,4 @@
+import { LanguageToggle } from '@/components/theme/LanguageToggle';
 import {
   Card,
   CardContent,
@@ -5,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { LanguageToggle } from '@/components/theme/LanguageToggle';
 import { MessagesResource } from '@/i18n/resources';
 
 export const LanguageCard = () => {

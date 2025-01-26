@@ -1,3 +1,8 @@
+import { UserPlus } from 'lucide-react';
+
+import { CreateEmployeeForm } from './forms/createEmployee/CreateEmployeeForm';
+import { NovoFuncionarioForm } from './forms/createEmployee/CreateEmployeeTypes';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -6,9 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { UserPlus } from 'lucide-react';
-import { NovoFuncionarioForm } from './forms/createEmployee/CreateEmployeeTypes';
-import { CreateEmployeeForm } from './forms/createEmployee/CreateEmployeeForm';
 import { MessagesResource } from '@/i18n/resources';
 
 interface CreateEmployeeDialogProps {

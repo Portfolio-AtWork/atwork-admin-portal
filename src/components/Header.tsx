@@ -1,9 +1,9 @@
 import { Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { SidebarTrigger } from '@/components/ui/sidebar';
-import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { useTranslation } from 'react-i18next';
 
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { Button } from '@/components/ui/button';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 import { MessagesResource } from '@/i18n/resources';
 
 const Header = () => {
