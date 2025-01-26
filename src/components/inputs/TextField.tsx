@@ -17,8 +17,6 @@ export const TextField = ({
   error,
   register,
 }: TextInputProps) => {
-  console.log(label);
-
   return (
     <>
       <Label>{label}</Label>

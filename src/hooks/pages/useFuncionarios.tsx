@@ -16,10 +16,10 @@ export interface FuncionariosByGrupoResult {
 }
 
 const getFuncionariosByGrupo = async (idGrupo: string) => {
-  const response = await api.get<FuncionariosByGrupoRequest, FuncionariosByGrupoResult[]>(
-    'funcionario/getFuncionariosByGrupo',
-    { ID_Grupo: idGrupo }
-  );
+  const response = await api.get<
+    FuncionariosByGrupoRequest,
+    FuncionariosByGrupoResult[]
+  >('funcionario/getFuncionariosByGrupo', { ID_Grupo: idGrupo });
 
   if (!response.ok) {
     throw new Error('Erro ao buscar funcionários do grupo');
@@ -28,10 +28,12 @@ const getFuncionariosByGrupo = async (idGrupo: string) => {
   return response.value;
 };
 
-const createFuncionario = async (data: NovoFuncionarioForm): Promise<boolean> => {
+const createFuncionario = async (
+  data: NovoFuncionarioForm,
+): Promise<boolean> => {
   const response = await api.post<NovoFuncionarioForm, boolean>(
     'funcionario/createFuncionario',
-    data
+    data,
   );
 
   if (!response.ok) {
@@ -48,7 +50,9 @@ export const useFuncionarios = (idGrupo: string) => {
 
   const createFuncionarioMutation = useMutation({
     mutationFn: (data: NovoFuncionarioForm) => createFuncionario(data),
-    onSuccess: () => {
+    onSuccess: (...response) => {
+      console.log(response);
+
       queryClient.invalidateQueries({ queryKey: ['funcionarios'] });
       toast({
         title: t('employeeCreated'),

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo, useState } from 'react';
 import { Accordion } from '@/components/ui/accordion';
 import { useTranslation } from 'react-i18next';
 import { GrupoAccordionItem } from '@/components/pages/funcionarios/GrupoAccordionItem';
@@ -11,12 +11,27 @@ import { LoadingMessage } from '@/components/LoadingMessage';
 
 const Funcionarios = () => {
   const { t } = useTranslation();
-  const [openGroup, setOpenGroup] = React.useState(false);
-  const [openEmployee, setOpenEmployee] = React.useState(false);
+  const [openGroup, setOpenGroup] = useState(false);
+  const [openEmployee, setOpenEmployee] = useState(false);
 
   const { createGrupo, grupos, gruposError, isCreatingGrupo, isLoadingGrupos } =
     useGrupos();
   const { createFuncionario, isCreatingFuncionario } = useFuncionarios('');
+
+  const RenderGrupos = useMemo(
+    () => () => {
+      if (!grupos?.length) return null;
+
+      return (
+        <Accordion type="multiple" className="w-full">
+          {grupos.map((grupo) => (
+            <GrupoAccordionItem key={grupo.ID} grupo={grupo} />
+          ))}
+        </Accordion>
+      );
+    },
+    [grupos],
+  );
 
   return (
     <>
@@ -40,13 +55,7 @@ const Funcionarios = () => {
         error={gruposError}
         errorMessage={t('errorLoadingGroups')}
       />
-      {grupos && (
-        <Accordion type="multiple" className="w-full">
-          {grupos.map((grupo) => (
-            <GrupoAccordionItem key={grupo.ID} grupo={grupo} />
-          ))}
-        </Accordion>
-      )}
+      <RenderGrupos />
     </>
   );
 };

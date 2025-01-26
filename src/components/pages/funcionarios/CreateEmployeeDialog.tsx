@@ -11,6 +11,7 @@ import {
 import { UserPlus } from 'lucide-react';
 import { NovoFuncionarioForm } from './forms/createEmployee/CreateEmployeeTypes';
 import { CreateEmployeeForm } from './forms/createEmployee/CreateEmployeeForm';
+import { UseMutateFunction } from '@tanstack/react-query';
 
 interface CreateEmployeeDialogProps {
   open: boolean;
@@ -27,6 +28,11 @@ export const CreateEmployeeDialog = ({
 }: CreateEmployeeDialogProps) => {
   const { t } = useTranslation();
 
+  function onSaveEmployee(values: NovoFuncionarioForm) {
+    onSubmit(values);
+    onOpenChange(false);
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
@@ -39,7 +45,7 @@ export const CreateEmployeeDialog = ({
         <DialogHeader>
           <DialogTitle>{t('new')}</DialogTitle>
         </DialogHeader>
-        <CreateEmployeeForm isPending={isPending} onSubmit={onSubmit} />
+        <CreateEmployeeForm isPending={isPending} onSubmit={onSaveEmployee} />
       </DialogContent>
     </Dialog>
   );
