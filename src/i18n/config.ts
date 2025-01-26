@@ -58,6 +58,9 @@ const ptTranslations = {
     select: 'Selecione',
     group: 'Grupo',
     changePassword: 'Trocar Senha',
+    save: 'Salvar',
+    saving: 'Salvando...',
+    createEmployee: 'Criar Funcionário',
   },
 };
 

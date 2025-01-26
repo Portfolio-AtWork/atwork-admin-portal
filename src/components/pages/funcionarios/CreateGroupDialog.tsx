@@ -1,8 +1,7 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogContent,
@@ -10,8 +9,8 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Plus } from "lucide-react";
+} from '@/components/ui/dialog';
+import { Plus } from 'lucide-react';
 
 interface CreateGroupDialogProps {
   open: boolean;
@@ -24,14 +23,19 @@ interface NovoGrupoForm {
   Nome: string;
 }
 
-export const CreateGroupDialog = ({ open, onOpenChange, onSubmit, isPending }: CreateGroupDialogProps) => {
+export const CreateGroupDialog = ({
+  open,
+  onOpenChange,
+  onSubmit,
+  isPending,
+}: CreateGroupDialogProps) => {
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm<NovoGrupoForm>();
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <Button>
+        <Button variant="outline">
           <Plus className="mr-2" />
           {t('createGroup')}
         </Button>
@@ -49,7 +53,7 @@ export const CreateGroupDialog = ({ open, onOpenChange, onSubmit, isPending }: C
           </div>
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? t('creating') : t('createGroup')}
+              {isPending ? t('saving') : t('save')}
             </Button>
           </DialogFooter>
         </form>

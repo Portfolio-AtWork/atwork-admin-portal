@@ -1,7 +1,7 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useToast } from "@/components/ui/use-toast";
-import { useTranslation } from "react-i18next";
-import api from "@/config/api";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useToast } from '@/components/ui/use-toast';
+import { useTranslation } from 'react-i18next';
+import api from '@/config/api';
 
 export interface FuncionariosByGrupoRequest {
   ID_Grupo: string;
@@ -32,7 +32,7 @@ export const useFuncionarios = (idGrupo: string) => {
     mutationFn: async (data: CreateFuncionarioRequest) => {
       const response = await api.post<CreateFuncionarioRequest, boolean>(
         'funcionario/createFuncionario',
-        data
+        data,
       );
 
       if (!response.ok) {
@@ -60,10 +60,10 @@ export const useFuncionarios = (idGrupo: string) => {
   return useQuery({
     queryKey: ['funcionarios', idGrupo],
     queryFn: async () => {
-      const response = await api.get<FuncionariosByGrupoRequest, FuncionariosByGrupoResult[]>(
-        'funcionario/getFuncionariosByGrupo',
-        { ID_Grupo: idGrupo }
-      );
+      const response = await api.get<
+        FuncionariosByGrupoRequest,
+        FuncionariosByGrupoResult[]
+      >('funcionario/getFuncionariosByGrupo', { ID_Grupo: idGrupo });
 
       if (!response.ok) {
         throw new Error('Erro ao buscar funcionários do grupo');
@@ -83,7 +83,7 @@ export const useCreateFuncionario = () => {
     mutationFn: async (data: CreateFuncionarioRequest) => {
       const response = await api.post<CreateFuncionarioRequest, boolean>(
         'funcionario/createFuncionario',
-        data
+        data,
       );
 
       if (!response.ok) {
