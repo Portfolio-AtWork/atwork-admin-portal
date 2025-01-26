@@ -34,7 +34,7 @@ interface NovoFuncionarioForm {
   Email: string;
 }
 
-const schema: yup.ObjectSchema<NovoFuncionarioForm> = yup.object({
+const schema = yup.object().shape<Record<keyof NovoFuncionarioForm, any>>({
   Nome: yup.string().required('Nome é obrigatório'),
   Login: yup.string().required('Login é obrigatório'),
   Senha: yup.string()
@@ -47,7 +47,7 @@ const schema: yup.ObjectSchema<NovoFuncionarioForm> = yup.object({
   Email: yup.string()
     .required('Email é obrigatório')
     .email('Email inválido'),
-}).required();
+}) as yup.ObjectSchema<NovoFuncionarioForm>;
 
 export const CreateEmployeeDialog = ({
   open,
