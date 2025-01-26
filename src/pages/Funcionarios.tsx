@@ -5,12 +5,7 @@ import { GrupoAccordionItem } from "@/components/pages/funcionarios/GrupoAccordi
 import { CreateGroupDialog } from "@/components/pages/funcionarios/CreateGroupDialog";
 import { CreateEmployeeDialog } from "@/components/pages/funcionarios/CreateEmployeeDialog";
 import { useGrupos } from "@/hooks/pages/useGrupos";
-import { useCreateFuncionario } from "@/hooks/pages/useFuncionarios";
-
-interface Grupo {
-  Nome: string;
-  ID: string;
-}
+import { useFuncionarios } from "@/hooks/pages/useFuncionarios";
 
 const Funcionarios = () => {
   const { t } = useTranslation();
@@ -18,7 +13,7 @@ const Funcionarios = () => {
   const [openEmployee, setOpenEmployee] = React.useState(false);
 
   const { createGrupo, grupos, gruposError, isCreatingGrupo, isLoadingGrupos } = useGrupos();
-  const createFuncionarioMutation = useCreateFuncionario();
+  const { createFuncionario, isCreatingFuncionario } = useFuncionarios("");
 
   return (
     <>
@@ -28,8 +23,8 @@ const Funcionarios = () => {
           <CreateEmployeeDialog
             open={openEmployee}
             onOpenChange={setOpenEmployee}
-            onSubmit={createFuncionarioMutation.mutate}
-            isPending={createFuncionarioMutation.isPending}
+            onSubmit={createFuncionario}
+            isPending={isCreatingFuncionario}
           />
           <CreateGroupDialog
             open={openGroup}
@@ -45,7 +40,7 @@ const Funcionarios = () => {
       
       {grupos && (
         <Accordion type="single" collapsible className="w-full">
-          {grupos.map((grupo: Grupo) => (
+          {grupos.map((grupo) => (
             <GrupoAccordionItem 
               key={grupo.ID} 
               grupo={grupo} 
