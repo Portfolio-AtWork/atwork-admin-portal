@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import { GrupoSelect } from '@/components/inputs/GrupoSelect';
 
-import { SeparatorHorizontal, UserPlus } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@radix-ui/react-separator';
 
