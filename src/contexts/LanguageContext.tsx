@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-type Language = 'pt' | 'en';
+export type Language = 'pt' | 'en';
 
 interface LanguageContextType {
   language: Language;

@@ -6,7 +6,7 @@ export type ResourceHandler<
   TKeys extends keyof Record<string, StringWithOptionalParams>,
 > = ProxyHandler<Record<TKeys, StringWithOptionalParams>>;
 
-function set<TKeys>(_: any, key: TKeys): boolean {
+function set<TKeys>(_: never, key: TKeys): boolean {
   throw new Error(`Can not assign value to a read-only property ${key}`);
 }
 
@@ -14,7 +14,8 @@ export function createProxyHandler<TKeys extends string>(
   baseJSON: Record<string, string>,
 ): ResourceHandler<TKeys> {
   const proxyHandler: ResourceHandler<TKeys> = {
-    get: (_: any, key: TKeys) => {
+    get: (_: never, key: TKeys) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const { t } = useTranslation();
 
       const hasKey = key in baseJSON;
@@ -24,7 +25,7 @@ export function createProxyHandler<TKeys extends string>(
       const baseString = t(key);
       const result = new String(baseString) as StringWithOptionalParams;
 
-      function withParameters(params: Record<string, any>): string {
+      function withParameters(params: Record<string, never>): string {
         return baseString.replace(
           /\{(.*?)\}/g,
           (_, match) => params[match] || `{${match}}`,

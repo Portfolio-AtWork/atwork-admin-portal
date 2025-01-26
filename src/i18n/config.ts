@@ -9,8 +9,8 @@ i18n.use(initReactI18next).init({
     pt: pt,
     en: en,
   },
-  lng: 'pt', // idioma padrão
-  fallbackLng: 'en',
+  lng: 'pt',
+  fallbackLng: 'pt',
   interpolation: {
     escapeValue: false,
   },

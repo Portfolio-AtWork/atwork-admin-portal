@@ -1,9 +1,9 @@
 import js from '@eslint/js';
-import globals from 'globals';
+import importPlugin from 'eslint-plugin-import';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -26,9 +26,10 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       '@typescript-eslint/no-unused-vars': 'error',
-      'no-unused-vars': [
-        'error',
-        { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
+      'react-hooks/exhaustive-deps': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_' },
       ],
       'import/order': [
         'error',

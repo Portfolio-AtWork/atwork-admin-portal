@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import {
   Select,
   SelectContent,
@@ -5,13 +7,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Language, useLanguage } from '@/contexts/LanguageContext';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 export function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
 
+  const [currentLanguage, setCurrentLanguage] = useLocalStorage(
+    'atWorkLanguage',
+    language,
+  );
+
+  const handleChange = useCallback(
+    (value: Language) => {
+      setLanguage(value);
+      setCurrentLanguage(value);
+    },
+    [setCurrentLanguage, setLanguage],
+  );
+
   return (
-    <Select value={language} onValueChange={setLanguage}>
+    <Select value={currentLanguage} onValueChange={handleChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Idioma" />
       </SelectTrigger>
