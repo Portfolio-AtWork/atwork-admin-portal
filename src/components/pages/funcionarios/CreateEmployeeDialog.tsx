@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -12,7 +14,6 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { GrupoSelect } from '@/components/inputs/GrupoSelect';
-
 import { UserPlus } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@radix-ui/react-separator';
@@ -33,6 +34,21 @@ interface NovoFuncionarioForm {
   Email: string;
 }
 
+const schema = yup.object().shape({
+  Nome: yup.string().required('Nome é obrigatório'),
+  Login: yup.string().required('Login é obrigatório'),
+  Senha: yup.string()
+    .required('Senha é obrigatória')
+    .min(6, 'Senha deve ter no mínimo 6 caracteres'),
+  ConfirmarSenha: yup.string()
+    .required('Confirmação de senha é obrigatória')
+    .oneOf([yup.ref('Senha')], 'As senhas devem ser iguais'),
+  ID_Grupo: yup.string().required('Grupo é obrigatório'),
+  Email: yup.string()
+    .required('Email é obrigatório')
+    .email('Email inválido'),
+});
+
 export const CreateEmployeeDialog = ({
   open,
   onOpenChange,
@@ -40,8 +56,15 @@ export const CreateEmployeeDialog = ({
   isPending,
 }: CreateEmployeeDialogProps) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, setValue, getValues } =
-    useForm<NovoFuncionarioForm>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm<NovoFuncionarioForm>({
+    resolver: yupResolver(schema),
+  });
 
   const handleGroupSelect = (value: string) => {
     setValue('ID_Grupo', value);
@@ -65,39 +88,54 @@ export const CreateEmployeeDialog = ({
             <Label>{t('name')}</Label>
             <Input
               placeholder={t('name')}
-              {...register('Nome', { required: true })}
+              {...register('Nome')}
             />
+            {errors.Nome && (
+              <p className="text-sm text-red-500">{errors.Nome.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>{t('login')}</Label>
             <Input
               placeholder={t('login')}
-              {...register('Login', { required: true })}
+              {...register('Login')}
             />
+            {errors.Login && (
+              <p className="text-sm text-red-500">{errors.Login.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>{t('password')}</Label>
             <Input
               type="password"
               placeholder={t('password')}
-              {...register('Senha', { required: true })}
+              {...register('Senha')}
             />
+            {errors.Senha && (
+              <p className="text-sm text-red-500">{errors.Senha.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>{t('confirmPassword')}</Label>
             <Input
               type="password"
               placeholder={t('confirmPassword')}
-              {...register('ConfirmarSenha', { required: true })}
+              {...register('ConfirmarSenha')}
             />
+            {errors.ConfirmarSenha && (
+              <p className="text-sm text-red-500">{errors.ConfirmarSenha.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>{t('email')}</Label>
             <Input
               type="email"
               placeholder={t('email')}
-              {...register('Email', { required: true })}
+              {...register('Email')}
             />
+            {errors.Email && (
+              <p className="text-sm text-red-500">{errors.Email.message}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>{t('group')}</Label>
@@ -105,6 +143,9 @@ export const CreateEmployeeDialog = ({
               onValueChange={handleGroupSelect}
               value={getValues().ID_Grupo}
             />
+            {errors.ID_Grupo && (
+              <p className="text-sm text-red-500">{errors.ID_Grupo.message}</p>
+            )}
           </div>
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
