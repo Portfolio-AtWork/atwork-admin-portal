@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import {
   Card,
   CardContent,
@@ -17,8 +16,6 @@ interface UserInfoProps {
 }
 
 export const UserInfoCard = ({ userInfo }: UserInfoProps) => {
-  const { t } = useTranslation();
-
   return (
     <Card className="mb-6">
       <CardHeader>
