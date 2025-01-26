@@ -9,8 +9,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { UserPlus } from 'lucide-react';
-
-import { Separator } from '@radix-ui/react-separator';
 import { NovoFuncionarioForm } from './forms/createEmployee/CreateEmployeeTypes';
 import { CreateEmployeeForm } from './forms/createEmployee/CreateEmployeeForm';
 
