@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,7 +9,7 @@ import {
 import { UserPlus } from 'lucide-react';
 import { NovoFuncionarioForm } from './forms/createEmployee/CreateEmployeeTypes';
 import { CreateEmployeeForm } from './forms/createEmployee/CreateEmployeeForm';
-import { UseMutateFunction } from '@tanstack/react-query';
+import { MessagesResource } from '@/i18n/resources';
 
 interface CreateEmployeeDialogProps {
   open: boolean;
@@ -26,8 +24,6 @@ export const CreateEmployeeDialog = ({
   onSubmit,
   isPending,
 }: CreateEmployeeDialogProps) => {
-  const { t } = useTranslation();
-
   function onSaveEmployee(values: NovoFuncionarioForm) {
     onSubmit(values);
     onOpenChange(false);
@@ -38,12 +34,12 @@ export const CreateEmployeeDialog = ({
       <DialogTrigger asChild>
         <Button variant="outline">
           <UserPlus className="mr-2" />
-          {t('createEmployee')}
+          {MessagesResource.CREATE_EMPLOYEE}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('new')}</DialogTitle>
+          <DialogTitle>{MessagesResource.NEW}</DialogTitle>
         </DialogHeader>
         <CreateEmployeeForm isPending={isPending} onSubmit={onSaveEmployee} />
       </DialogContent>

@@ -8,6 +8,7 @@ import { useGrupos } from '@/hooks/pages/useGrupos';
 import { useFuncionarios } from '@/hooks/pages/useFuncionarios';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { LoadingMessage } from '@/components/LoadingMessage';
+import { MessagesResource } from '@/i18n/resources';
 
 const Funcionarios = () => {
   const { t } = useTranslation();
@@ -35,7 +36,7 @@ const Funcionarios = () => {
 
   return (
     <>
-      <PageHeader title={t('employeeGroups')}>
+      <PageHeader title={MessagesResource.SAVE}>
         <CreateEmployeeDialog
           open={openEmployee}
           onOpenChange={setOpenEmployee}
@@ -49,12 +50,7 @@ const Funcionarios = () => {
           isPending={isCreatingGrupo}
         />
       </PageHeader>
-      <LoadingMessage
-        isLoading={isLoadingGrupos}
-        loadingMessage={t('loadingGroups')}
-        error={gruposError}
-        errorMessage={t('errorLoadingGroups')}
-      />
+      <LoadingMessage isLoading={isLoadingGrupos} error={gruposError} />
       <RenderGrupos />
     </>
   );

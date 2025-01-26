@@ -1,12 +1,13 @@
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { useTranslation } from "react-i18next";
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { useTranslation } from 'react-i18next';
+
+import { MessagesResource } from '@/i18n/resources';
 
 const Header = () => {
-  const { t } = useTranslation();
-  const userName = localStorage.getItem("userName") || "";
+  const userName = localStorage.getItem('userName') || '';
 
   return (
     <header className="border-b bg-background">
@@ -20,7 +21,7 @@ const Header = () => {
         <div className="ml-auto flex items-center gap-4">
           <ThemeToggle />
           <p className="text-sm text-muted-foreground">
-            {t('hello')}, {userName}
+            {MessagesResource.HELLO}, {userName}
           </p>
         </div>
       </div>

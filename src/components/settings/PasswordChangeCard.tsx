@@ -1,14 +1,14 @@
-import { useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
-import { useToast } from "@/hooks/use-toast"
-import { Button } from "@/components/ui/button"
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -16,49 +16,50 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { MessagesResource } from '@/i18n/resources';
 
 interface PasswordChangeForm {
-  currentPassword: string
-  newPassword: string
-  confirmPassword: string
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export const PasswordChangeCard = () => {
-  const { t } = useTranslation()
-  const { toast } = useToast()
+  const { t } = useTranslation();
+  const { toast } = useToast();
   const form = useForm<PasswordChangeForm>({
     defaultValues: {
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: '',
     },
-  })
+  });
 
   const onSubmit = (data: PasswordChangeForm) => {
     if (data.newPassword !== data.confirmPassword) {
       toast({
-        title: t("error"),
-        description: t("passwordsDoNotMatch"),
-        variant: "destructive",
-      })
-      return
+        title: MessagesResource.ERROR,
+        description: MessagesResource.PASSWORDS_DO_NOT_MATCH,
+        variant: 'destructive',
+      });
+      return;
     }
 
-    console.log("Changing password:", data)
+    console.log('Changing password:', data);
     toast({
-      title: t("success"),
-      description: t("passwordChanged"),
-    })
-    form.reset()
-  }
+      title: MessagesResource.SUCCESS,
+      description: MessagesResource.PASSWORD_CHANGED,
+    });
+    form.reset();
+  };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t("changePassword")}</CardTitle>
-        <CardDescription>{t("updatePassword")}</CardDescription>
+        <CardTitle>{MessagesResource.CHANGE_PASSWORD}</CardTitle>
+        <CardDescription>{MessagesResource.UPDATE_PASSWORD}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -68,7 +69,7 @@ export const PasswordChangeCard = () => {
               name="currentPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("currentPassword")}</FormLabel>
+                  <FormLabel>{MessagesResource.CURRENT_PASSWORD}</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
@@ -81,7 +82,7 @@ export const PasswordChangeCard = () => {
               name="newPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("newPassword")}</FormLabel>
+                  <FormLabel>{MessagesResource.NEW_PASSWORD}</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
@@ -94,7 +95,7 @@ export const PasswordChangeCard = () => {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("confirmNewPassword")}</FormLabel>
+                  <FormLabel>{MessagesResource.CONFIRM_NEW_PASSWORD}</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
@@ -102,10 +103,10 @@ export const PasswordChangeCard = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">{t("changePassword")}</Button>
+            <Button type="submit">{MessagesResource.CHANGE_PASSWORD}</Button>
           </form>
         </Form>
       </CardContent>
     </Card>
-  )
-}
+  );
+};

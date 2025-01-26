@@ -4,8 +4,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useLanguage } from "@/contexts/LanguageContext";
+} from '@/components/ui/select';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function LanguageToggle() {
   const { language, setLanguage } = useLanguage();

@@ -6,8 +6,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useGrupos } from '@/hooks/pages/useGrupos';
-import { useTranslation } from 'react-i18next';
 import { Label } from '../ui/label';
+import { MessagesResource } from '@/i18n/resources';
 
 type GrupoSelectProps = {
   value: string;
@@ -25,7 +25,6 @@ export const GrupoSelect = ({
   error,
 }: GrupoSelectProps) => {
   const { grupos } = useGrupos();
-  const { t } = useTranslation();
 
   return (
     <>
@@ -37,7 +36,7 @@ export const GrupoSelect = ({
         defaultValue=""
       >
         <SelectTrigger>
-          <SelectValue placeholder={t('select')} />
+          <SelectValue placeholder={MessagesResource.SELECT} />
         </SelectTrigger>
         <SelectContent>
           {grupos?.map((grupo) => (

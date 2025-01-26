@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { MessagesResource } from '@/i18n/resources';
 
 type LoadingMessageProps = {
   isLoading: boolean;
@@ -13,11 +13,13 @@ export const LoadingMessage = ({
   error,
   errorMessage,
 }: LoadingMessageProps) => {
-  const { t } = useTranslation();
-
-  if (isLoading) return <p>{loadingMessage || t('loading')}</p>;
+  if (isLoading) return <p>{loadingMessage || MessagesResource.LOADING}</p>;
   if (error)
-    return <p className="text-red-500">{errorMessage || t('errorLoading')}</p>;
+    return (
+      <p className="text-red-500">
+        {errorMessage || MessagesResource.ERROR_LOADING}
+      </p>
+    );
 
   return null;
 };

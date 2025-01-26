@@ -11,6 +11,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { Plus } from 'lucide-react';
+import { MessagesResource } from '@/i18n/resources';
 
 interface CreateGroupDialogProps {
   open: boolean;
@@ -37,23 +38,23 @@ export const CreateGroupDialog = ({
       <DialogTrigger asChild>
         <Button variant="outline">
           <Plus className="mr-2" />
-          {t('createGroup')}
+          {MessagesResource.CREATE_GROUP}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t('createNewGroup')}</DialogTitle>
+          <DialogTitle>{MessagesResource.NEW}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
             <Input
-              placeholder={t('groupName')}
+              placeholder={MessagesResource.GROUP_NAME}
               {...register('Nome', { required: true })}
             />
           </div>
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? t('saving') : t('save')}
+              {isPending ? MessagesResource.SAVING : MessagesResource.SAVE}
             </Button>
           </DialogFooter>
         </form>

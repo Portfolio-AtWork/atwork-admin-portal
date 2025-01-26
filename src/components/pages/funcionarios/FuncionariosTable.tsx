@@ -1,5 +1,3 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
 import {
   Table,
   TableBody,
@@ -7,19 +5,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
+import { MessagesResource } from '@/i18n/resources';
 
-import { FuncionariosByGrupoResult } from "@/hooks/pages/useFuncionarios";
+import { FuncionariosByGrupoResult } from '@/hooks/pages/useFuncionarios';
 
-export const FuncionariosTable = ({ funcionarios }: { funcionarios: FuncionariosByGrupoResult[] }) => {
-  const { t } = useTranslation();
-
+export const FuncionariosTable = ({
+  funcionarios,
+}: {
+  funcionarios: FuncionariosByGrupoResult[];
+}) => {
   const getStatusDisplay = (status: string) => {
     switch (status) {
       case 'A':
-        return t('active');
+        return MessagesResource.ACTIVE;
       case 'C':
-        return t('canceled');
+        return MessagesResource.CANCELED;
       default:
         return status;
     }
@@ -30,13 +31,13 @@ export const FuncionariosTable = ({ funcionarios }: { funcionarios: Funcionarios
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>{t('name')}</TableHead>
-            <TableHead>{t('email')}</TableHead>
-            <TableHead>{t('status')}</TableHead>
+            <TableHead>{MessagesResource.NAME}</TableHead>
+            <TableHead>{MessagesResource.EMAIL}</TableHead>
+            <TableHead>{MessagesResource.STATUS}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {funcionarios.map(funcionario => (
+          {funcionarios.map((funcionario) => (
             <TableRow key={funcionario.ID}>
               <TableCell>{funcionario.Nome}</TableCell>
               <TableCell>{funcionario.Email}</TableCell>

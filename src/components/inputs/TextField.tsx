@@ -20,7 +20,7 @@ export const TextField = ({
   return (
     <>
       <Label>{label}</Label>
-      <Input type={type} placeholder={placeholder} {...register} />
+      <Input type={type} placeholder={placeholder || label} {...register} />
       {error && <p className="mt-0 text-sm text-red-500">{error}</p>}
     </>
   );

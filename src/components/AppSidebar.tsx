@@ -1,6 +1,6 @@
-import { Home, Users, Settings, LogOut } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { Home, Users, Settings, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Sidebar,
   SidebarContent,
@@ -10,30 +10,31 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
+import { MessagesResource } from '@/i18n/resources';
 
 export function AppSidebar() {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const items = [
-    { title: t('dashboard'), icon: Home, url: "/home" },
-    { title: t('employees'), icon: Users, url: "/funcionarios" },
-    { title: t('settings'), icon: Settings, url: "/settings" },
+    { title: MessagesResource.DASHBOARD, icon: Home, url: '/home' },
+    { title: MessagesResource.EMPLOYEES, icon: Users, url: '/funcionarios' },
+    { title: MessagesResource.SETTINGS, icon: Settings, url: '/settings' },
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("login");
-    localStorage.removeItem("nome");
-    navigate("/");
+    localStorage.removeItem('token');
+    localStorage.removeItem('login');
+    localStorage.removeItem('nome');
+    navigate('/');
   };
 
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>{t('menu')}</SidebarGroupLabel>
+          <SidebarGroupLabel>{MessagesResource.MENU}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -47,9 +48,12 @@ export function AppSidebar() {
                 </SidebarMenuItem>
               ))}
               <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleLogout} className="flex items-center gap-2 w-full">
+                <SidebarMenuButton
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 w-full"
+                >
                   <LogOut className="h-4 w-4" />
-                  <span>{t('logout')}</span>
+                  <span>{MessagesResource.LOGOUT}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
