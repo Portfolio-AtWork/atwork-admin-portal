@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  baseUrl: 'https://localhost:44302', // You can change this to your actual API base URL
+  baseUrl: import.meta.env.VITE_API_URL, // You can change this to your actual API base URL
 } as const;
 
 // Helper function to build API URLs
