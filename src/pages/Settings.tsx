@@ -1,7 +1,8 @@
-import { AppearanceCard } from '@/components/settings/AppearanceCard';
-import { LanguageCard } from '@/components/settings/LanguageCard';
-import { PasswordChangeCard } from '@/components/settings/PasswordChangeCard';
-import { UserInfoCard } from '@/components/settings/UserInfoCard';
+import { PageHeader } from '@/components/layout/PageHeader';
+import { AppearanceCard } from '@/components/pages/settings/AppearanceCard';
+import { LanguageCard } from '@/components/pages/settings/LanguageCard';
+import { PasswordChangeCard } from '@/components/pages/settings/PasswordChangeCard';
+import { UserInfoCard } from '@/components/pages/settings/UserInfoCard';
 import { Separator } from '@/components/ui/separator';
 import { MessagesResource } from '@/i18n/resources';
 
@@ -13,15 +14,14 @@ const Settings = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-6">{MessagesResource.SETTINGS}</h1>
-
+    <>
+      <PageHeader title={MessagesResource.SETTINGS} />
       <UserInfoCard userInfo={userInfo} />
       <AppearanceCard />
       <LanguageCard />
       <Separator className="my-6" />
       <PasswordChangeCard />
-    </div>
+    </>
   );
 };
 

@@ -1,3 +1,5 @@
+import { Check, X } from 'lucide-react';
+
 import {
   Table,
   TableBody,
@@ -9,7 +11,6 @@ import {
 import { FuncionariosByGrupoResult } from '@/hooks/pages/useFuncionarios';
 import { MessagesResource } from '@/i18n/resources';
 
-
 export const FuncionariosTable = ({
   funcionarios,
 }: {
@@ -18,9 +19,9 @@ export const FuncionariosTable = ({
   const getStatusDisplay = (status: string) => {
     switch (status) {
       case 'A':
-        return MessagesResource.ACTIVE;
+        return <Check color="#16d057" />;
       case 'C':
-        return MessagesResource.CANCELED;
+        return <X color="#ee0606" />;
       default:
         return status;
     }
@@ -39,9 +40,17 @@ export const FuncionariosTable = ({
         <TableBody>
           {funcionarios.map((funcionario) => (
             <TableRow key={funcionario.ID}>
+              <TableCell
+                title={
+                  funcionario.ST_Status == 'A'
+                    ? MessagesResource.ACTIVE
+                    : MessagesResource.CANCELED
+                }
+              >
+                {getStatusDisplay(funcionario.ST_Status)}
+              </TableCell>
               <TableCell>{funcionario.Nome}</TableCell>
               <TableCell>{funcionario.Email}</TableCell>
-              <TableCell>{getStatusDisplay(funcionario.ST_Status)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

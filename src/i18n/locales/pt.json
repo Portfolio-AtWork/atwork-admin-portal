@@ -50,6 +50,7 @@
     "SAVE": "Salvar",
     "SAVING": "Salvando...",
     "CREATE_EMPLOYEE": "Criar Funcionário",
-    "SELECT_AN_OPTION": "Selecione Uma Opção Para Começar"
+    "SELECT_AN_OPTION": "Selecione Uma Opção Para Começar",
+    "ACTIONS": "Ações"
   }
 }

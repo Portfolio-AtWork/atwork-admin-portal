@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { PageHeader } from '@/components/layout/PageHeader';
 import { LoadingMessage } from '@/components/LoadingMessage';
@@ -12,7 +11,6 @@ import { useGrupos } from '@/hooks/pages/useGrupos';
 import { MessagesResource } from '@/i18n/resources';
 
 const Funcionarios = () => {
-  const { t } = useTranslation();
   const [openGroup, setOpenGroup] = useState(false);
   const [openEmployee, setOpenEmployee] = useState(false);
 
@@ -37,7 +35,7 @@ const Funcionarios = () => {
 
   return (
     <>
-      <PageHeader title={MessagesResource.SAVE}>
+      <PageHeader title={MessagesResource.EMPLOYEE_GROUPS}>
         <CreateEmployeeDialog
           open={openEmployee}
           onOpenChange={setOpenEmployee}
