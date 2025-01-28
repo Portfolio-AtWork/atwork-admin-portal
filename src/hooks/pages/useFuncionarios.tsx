@@ -52,7 +52,6 @@ export const useFuncionarios = (idGrupo: string) => {
   const createFuncionarioMutation = useMutation({
     mutationFn: (data: NovoFuncionarioForm) => createFuncionario(data),
     onSuccess: (...response) => {
-      console.log(response);
 
       queryClient.invalidateQueries({ queryKey: ['funcionarios'] });
       toast({

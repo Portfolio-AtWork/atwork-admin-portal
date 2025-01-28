@@ -16,11 +16,13 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { i18n } = useTranslation();
+
   const [language, setLanguageState] = useState<Language>(
     i18n.language as Language,
   );
 
   const setLanguage = (lang: Language) => {
+    localStorage.setItem('atWorkLanguage', lang)
     i18n.changeLanguage(lang);
     setLanguageState(lang);
   };
@@ -32,10 +34,4 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
-};
+export default LanguageContext

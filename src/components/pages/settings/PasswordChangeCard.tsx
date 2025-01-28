@@ -48,7 +48,6 @@ export const PasswordChangeCard = () => {
       return;
     }
 
-    console.log('Changing password:', data);
     toast({
       title: MessagesResource.SUCCESS,
       description: MessagesResource.PASSWORD_CHANGED,
