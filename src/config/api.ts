@@ -4,7 +4,7 @@ export const API_CONFIG = {
 
 // Helper function to build API URLs
 export const buildApiUrl = (endpoint: string): string => {
-  return `${API_CONFIG.baseUrl}/api/${endpoint}`;
+  return `${API_CONFIG.baseUrl}${endpoint}`;
 };
 
 export enum NotificationKind {

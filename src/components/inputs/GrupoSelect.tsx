@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useGrupos } from '@/hooks/pages/useGrupos';
+import { useGetGruposByLogin } from '@/hooks/api/grupo/useGetGruposByLogin';
 import { MessagesResource } from '@/i18n/resources';
 
 type GrupoSelectProps = {
@@ -25,7 +25,7 @@ export const GrupoSelect = ({
   label,
   error,
 }: GrupoSelectProps) => {
-  const { grupos } = useGrupos();
+  const { data } = useGetGruposByLogin();
 
   return (
     <>
@@ -40,7 +40,7 @@ export const GrupoSelect = ({
           <SelectValue placeholder={MessagesResource.SELECT} />
         </SelectTrigger>
         <SelectContent>
-          {grupos?.map((grupo) => (
+          {data?.map((grupo) => (
             <SelectItem key={grupo.ID} value={grupo.ID}>
               {grupo.Nome}
             </SelectItem>

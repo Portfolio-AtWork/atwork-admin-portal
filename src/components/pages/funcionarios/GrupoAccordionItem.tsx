@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { useFuncionarios } from '@/hooks/pages/useFuncionarios';
+import { useFuncionariosByGrupo } from '@/hooks/api/funcionario/useGetFuncionariosByGrupo';
 
 interface Grupo {
   Nome: string;
@@ -14,14 +14,17 @@ interface Grupo {
 }
 
 export const GrupoAccordionItem = ({ grupo }: { grupo: Grupo }) => {
-  const { data: funcionarios, isLoading, error } = useFuncionarios(grupo.ID);
+  const fetchFunc = useFuncionariosByGrupo(grupo.ID);
 
   return (
     <AccordionItem value={grupo.ID}>
       <AccordionTrigger>{grupo.Nome}</AccordionTrigger>
       <AccordionContent>
-        <LoadingMessage isLoading={isLoading} error={error} />
-        <FuncionariosTable funcionarios={funcionarios} />
+        <LoadingMessage
+          isLoading={fetchFunc.isLoading}
+          error={fetchFunc.error}
+        />
+        <FuncionariosTable funcionarios={fetchFunc.data} />
       </AccordionContent>
     </AccordionItem>
   );
