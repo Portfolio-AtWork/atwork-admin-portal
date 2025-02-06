@@ -1,0 +1,23 @@
+import { useQuery } from '@tanstack/react-query';
+
+import { getPontosByFuncionario } from '@/services/api/ponto';
+import {
+  GetPontoByFuncionarioRequest,
+  GetPontoByFuncionarioResult,
+} from '@/services/types/ponto';
+
+export const queryKey = ['gruposByLogin'];
+
+export async function fetchPontos(queryParams: GetPontoByFuncionarioRequest) {
+  const response = await getPontosByFuncionario(queryParams);
+  return response.data.value;
+}
+
+export function useGetPontosByFuncionario(
+  queryParams: GetPontoByFuncionarioRequest,
+) {
+  return useQuery<GetPontoByFuncionarioResult[], Error>({
+    queryKey: queryKey,
+    queryFn: () => fetchPontos(queryParams),
+  });
+}

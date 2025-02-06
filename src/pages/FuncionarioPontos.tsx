@@ -1,6 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import { useParams } from 'react-router-dom';
 
 import { PageHeader } from '@/components/layout/PageHeader';
 import { LoadingMessage } from '@/components/LoadingMessage';
@@ -12,29 +11,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useGetPontosByFuncionario } from '@/hooks/api/ponto/useGetPontosByFuncionario';
 import { MessagesResource } from '@/i18n/resources';
-import { getPontosByFuncionario } from '@/services/api/ponto';
-
-interface Ponto {
-  ID: string;
-  ID_Funcionario: string;
-  DT_Ponto: string;
-  ST_Ponto: string;
-}
+import { GetPontoByFuncionarioResult } from '@/services/types/ponto';
 
 const FuncionarioPontos = () => {
   const { id } = useParams();
-
-  const { data: pontos, isLoading, error } = useQuery({
-    queryKey: ['pontos', id],
-    queryFn: () => getPontosByFuncionario(id!),
-    enabled: !!id,
-  });
+  const fetchPontos = useGetPontosByFuncionario({ ID_Funcionario: id });
 
   return (
     <>
       <PageHeader title={MessagesResource.EMPLOYEE_POINTS} />
-      <LoadingMessage isLoading={isLoading} error={error} />
+      <LoadingMessage
+        isLoading={fetchPontos.isLoading}
+        error={fetchPontos.error}
+      />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -44,7 +35,7 @@ const FuncionarioPontos = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {pontos?.map((ponto: Ponto) => (
+            {fetchPontos.data?.map((ponto: GetPontoByFuncionarioResult) => (
               <TableRow key={ponto.ID}>
                 <TableCell>
                   {format(new Date(ponto.DT_Ponto), 'dd/MM/yyyy HH:mm:ss')}

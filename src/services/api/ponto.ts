@@ -1,6 +1,21 @@
-import { api } from '@/lib/api';
+import { AxiosResponse } from 'axios';
 
-export async function getPontosByFuncionario(id: string) {
-  const response = await api.get(`/ponto/funcionario/${id}`);
-  return response.data;
+import api from '../axios';
+import { ObjectResponse } from '../types/base';
+import {
+  GetPontoByFuncionarioRequest,
+  GetPontoByFuncionarioResult,
+} from '../types/ponto';
+
+const BASE_URL = 'ponto';
+
+export async function getPontosByFuncionario(
+  queryParams: GetPontoByFuncionarioRequest,
+) {
+  return await api.get<
+    GetPontoByFuncionarioRequest,
+    AxiosResponse<ObjectResponse<GetPontoByFuncionarioResult[]>>
+  >(`${BASE_URL}/byFuncionario`, {
+    params: queryParams,
+  });
 }
