@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Settings from "./pages/Settings";
+import FuncionarioPontos from "./pages/FuncionarioPontos";
 
 export function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ export function AppRoutes() {
         <Route path="/home" element={<Home />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/funcionarios" element={<Funcionarios />} />
+        <Route path="/funcionario/:id/pontos" element={<FuncionarioPontos />} />
       </Route>
     </Routes>
   );

@@ -1,4 +1,5 @@
 import { Check, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Table,
@@ -16,6 +17,8 @@ export const FuncionariosTable = ({
 }: {
   funcionarios: FuncionariosByGrupoResult[];
 }) => {
+  const navigate = useNavigate();
+
   const getStatusDisplay = (status: string) => {
     switch (status) {
       case 'A':
@@ -25,6 +28,10 @@ export const FuncionariosTable = ({
       default:
         return status;
     }
+  };
+
+  const handleRowClick = (funcionarioId: string) => {
+    navigate(`/funcionario/${funcionarioId}/pontos`);
   };
 
   return (
@@ -39,7 +46,11 @@ export const FuncionariosTable = ({
         </TableHeader>
         <TableBody>
           {funcionarios.map((funcionario) => (
-            <TableRow key={funcionario.ID}>
+            <TableRow 
+              key={funcionario.ID}
+              className="cursor-pointer hover:bg-muted"
+              onClick={() => handleRowClick(funcionario.ID)}
+            >
               <TableCell
                 title={
                   funcionario.ST_Status == 'A'

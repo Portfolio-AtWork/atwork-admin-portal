@@ -17,9 +17,9 @@ export const GrupoAccordionItem = ({ grupo }: { grupo: Grupo }) => {
   const fetchFunc = useFuncionariosByGrupo(grupo.ID);
 
   return (
-    <AccordionItem value={grupo.ID}>
-      <AccordionTrigger>{grupo.Nome}</AccordionTrigger>
-      <AccordionContent>
+    <AccordionItem value={grupo.ID} className="bg-[#F1F0FB] rounded-md mb-2">
+      <AccordionTrigger className="px-4">{grupo.Nome}</AccordionTrigger>
+      <AccordionContent className="px-4">
         <LoadingMessage
           isLoading={fetchFunc.isLoading}
           error={fetchFunc.error}
