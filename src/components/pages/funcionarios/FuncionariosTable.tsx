@@ -1,6 +1,18 @@
+
 import { Check, ScrollText, X } from 'lucide-react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { TableActions } from '@/components/table/TableActions';
 import {
   Table,
@@ -19,6 +31,8 @@ export const FuncionariosTable = ({
   funcionarios: GetFuncionariosByGrupoResult[];
 }) => {
   const navigate = useNavigate();
+  const [selectedFuncionario, setSelectedFuncionario] = useState<GetFuncionariosByGrupoResult | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getStatusDisplay = (status: string) => {
     switch (status) {
@@ -35,54 +49,97 @@ export const FuncionariosTable = ({
     navigate(`/funcionario/${row.ID}/pontos`);
   }
 
-  function openCancelFuncionarioModal(funcionarioId: string) {}
+  function openCancelFuncionarioModal(funcionarioId: string) {
+    const funcionario = funcionarios.find((f) => f.ID === funcionarioId);
+    if (funcionario) {
+      setSelectedFuncionario(funcionario);
+      setIsModalOpen(true);
+      // Change URL without navigating
+      window.history.pushState({}, '', `/cancelar-funcionario/${funcionarioId}`);
+    }
+  }
+
+  function handleConfirmCancel() {
+    // Here you would implement the actual cancellation logic
+    console.log(`Cancelando funcionário: ${selectedFuncionario?.Nome}`);
+    setIsModalOpen(false);
+    // Return to previous URL
+    window.history.back();
+  }
+
+  function handleCancelModal() {
+    setIsModalOpen(false);
+    // Return to previous URL
+    window.history.back();
+  }
 
   return (
-    <div className="rounded-md border">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>{MessagesResource.NAME}</TableHead>
-            <TableHead>{MessagesResource.EMAIL}</TableHead>
-            <TableHead>{MessagesResource.STATUS}</TableHead>
-            <TableHead>{MessagesResource.ACTIONS}</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {funcionarios.map((funcionario) => (
-            <TableRow
-              key={funcionario.ID}
-              className="cursor-pointer hover:bg-muted"
-            >
-              <TableCell
-                title={
-                  funcionario.ST_Status == 'A'
-                    ? MessagesResource.ACTIVE
-                    : MessagesResource.CANCELED
-                }
-              >
-                {getStatusDisplay(funcionario.ST_Status)}
-              </TableCell>
-              <TableCell>{funcionario.Nome}</TableCell>
-              <TableCell>{funcionario.Email}</TableCell>
-              <TableCell>
-                <TableActions
-                  row={funcionario}
-                  cancelAction={openCancelFuncionarioModal}
-                  customActions={[
-                    {
-                      action: handleRowClick,
-                      color: 'yellow',
-                      title: MessagesResource.SEE_EMPLOYEE_POINTS,
-                      icon: <ScrollText className="w-5 h-5" />,
-                    },
-                  ]}
-                />
-              </TableCell>
+    <>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>{MessagesResource.STATUS}</TableHead>
+              <TableHead>{MessagesResource.NAME}</TableHead>
+              <TableHead>{MessagesResource.EMAIL}</TableHead>
+              <TableHead>{MessagesResource.ACTIONS}</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+          </TableHeader>
+          <TableBody>
+            {funcionarios.map((funcionario) => (
+              <TableRow
+                key={funcionario.ID}
+                className="cursor-pointer hover:bg-muted"
+              >
+                <TableCell
+                  title={
+                    funcionario.ST_Status == 'A'
+                      ? MessagesResource.ACTIVE
+                      : MessagesResource.CANCELED
+                  }
+                >
+                  {getStatusDisplay(funcionario.ST_Status)}
+                </TableCell>
+                <TableCell>{funcionario.Nome}</TableCell>
+                <TableCell>{funcionario.Email}</TableCell>
+                <TableCell>
+                  <TableActions
+                    row={funcionario}
+                    cancelAction={openCancelFuncionarioModal}
+                    customActions={[
+                      {
+                        action: handleRowClick,
+                        color: 'yellow',
+                        title: MessagesResource.SEE_EMPLOYEE_POINTS,
+                        icon: <ScrollText className="w-5 h-5" />,
+                      },
+                    ]}
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
+      <AlertDialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{MessagesResource.CONFIRM_CANCELLATION}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {MessagesResource.CANCEL_EMPLOYEE_CONFIRMATION.replace(
+                '{0}',
+                selectedFuncionario?.Nome || ''
+              )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={handleCancelModal}>{MessagesResource.NO}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirmCancel}>{MessagesResource.YES}</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 };
+

@@ -1,3 +1,4 @@
+
 import { Route, Routes } from 'react-router-dom';
 
 import Layout from './components/Layout';
@@ -18,6 +19,7 @@ export function AppRoutes() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/funcionarios" element={<Funcionarios />} />
         <Route path="/funcionario/:id/pontos" element={<FuncionarioPontos />} />
+        <Route path="/cancelar-funcionario/:id" element={<Funcionarios />} />
       </Route>
     </Routes>
   );
