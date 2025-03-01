@@ -3,16 +3,7 @@ import { Check, ScrollText, X } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+import { CancellationModal } from '@/components/modals/CancellationModal';
 import { TableActions } from '@/components/table/TableActions';
 import {
   Table,
@@ -122,24 +113,13 @@ export const FuncionariosTable = ({
         </Table>
       </div>
 
-      <AlertDialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{MessagesResource.CONFIRM_CANCELLATION}</AlertDialogTitle>
-            <AlertDialogDescription>
-              {MessagesResource.CANCEL_EMPLOYEE_CONFIRMATION.replace(
-                '{0}',
-                selectedFuncionario?.Nome || ''
-              )}
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={handleCancelModal}>{MessagesResource.NO}</AlertDialogCancel>
-            <AlertDialogAction onClick={handleConfirmCancel}>{MessagesResource.YES}</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <CancellationModal
+        isOpen={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        itemName={selectedFuncionario?.Nome || ''}
+        onConfirm={handleConfirmCancel}
+        onCancel={handleCancelModal}
+      />
     </>
   );
 };
-
