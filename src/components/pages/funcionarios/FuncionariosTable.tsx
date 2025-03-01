@@ -1,6 +1,7 @@
-import { Check, X } from 'lucide-react';
+import { Check, ScrollText, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+import { TableActions } from '@/components/table/TableActions';
 import {
   Table,
   TableBody,
@@ -9,13 +10,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { FuncionariosByGrupoResult } from '@/hooks/pages/useFuncionarios';
 import { MessagesResource } from '@/i18n/resources';
+import { GetFuncionariosByGrupoResult } from '@/services/types/funcionario';
 
 export const FuncionariosTable = ({
-  funcionarios,
+  funcionarios = [],
 }: {
-  funcionarios: FuncionariosByGrupoResult[];
+  funcionarios: GetFuncionariosByGrupoResult[];
 }) => {
   const navigate = useNavigate();
 
@@ -30,9 +31,11 @@ export const FuncionariosTable = ({
     }
   };
 
-  const handleRowClick = (funcionarioId: string) => {
-    navigate(`/funcionario/${funcionarioId}/pontos`);
-  };
+  function handleRowClick(row: GetFuncionariosByGrupoResult) {
+    navigate(`/funcionario/${row.ID}/pontos`);
+  }
+
+  function openCancelFuncionarioModal(funcionarioId: string) {}
 
   return (
     <div className="rounded-md border">
@@ -42,14 +45,14 @@ export const FuncionariosTable = ({
             <TableHead>{MessagesResource.NAME}</TableHead>
             <TableHead>{MessagesResource.EMAIL}</TableHead>
             <TableHead>{MessagesResource.STATUS}</TableHead>
+            <TableHead>{MessagesResource.ACTIONS}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {funcionarios.map((funcionario) => (
-            <TableRow 
+            <TableRow
               key={funcionario.ID}
               className="cursor-pointer hover:bg-muted"
-              onClick={() => handleRowClick(funcionario.ID)}
             >
               <TableCell
                 title={
@@ -62,6 +65,20 @@ export const FuncionariosTable = ({
               </TableCell>
               <TableCell>{funcionario.Nome}</TableCell>
               <TableCell>{funcionario.Email}</TableCell>
+              <TableCell>
+                <TableActions
+                  row={funcionario}
+                  cancelAction={openCancelFuncionarioModal}
+                  customActions={[
+                    {
+                      action: handleRowClick,
+                      color: 'yellow',
+                      title: MessagesResource.SEE_EMPLOYEE_POINTS,
+                      icon: <ScrollText className="w-5 h-5" />,
+                    },
+                  ]}
+                />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

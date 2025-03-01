@@ -1,12 +1,12 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 
-import Layout from "./components/Layout";
-import Funcionarios from "./pages/Funcionarios";
-import Home from "./pages/Home";
-import Index from "./pages/Index";
-import Login from "./pages/Login";
-import Settings from "./pages/Settings";
-import FuncionarioPontos from "./pages/FuncionarioPontos";
+import Layout from './components/Layout';
+import FuncionarioPontos from './pages/FuncionarioPontos';
+import Funcionarios from './pages/Funcionarios';
+import Home from './pages/Home';
+import Index from './pages/Index';
+import Login from './pages/Login';
+import Settings from './pages/Settings';
 
 export function AppRoutes() {
   return (

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { PageHeader } from '@/components/layout/PageHeader';
 import { LoadingMessage } from '@/components/LoadingMessage';
+import { TableActions } from '@/components/table/TableActions';
 import {
   Table,
   TableBody,
@@ -18,7 +19,7 @@ import { GetPontoByFuncionarioResult } from '@/services/types/ponto';
 const FuncionarioPontos = () => {
   const { id } = useParams();
   const fetchPontos = useGetPontosByFuncionario({ ID_Funcionario: id });
-
+  console.log(fetchPontos.data);
   return (
     <>
       <PageHeader title={MessagesResource.EMPLOYEE_POINTS} />
@@ -32,6 +33,7 @@ const FuncionarioPontos = () => {
             <TableRow>
               <TableHead>{MessagesResource.DATE}</TableHead>
               <TableHead>{MessagesResource.STATUS}</TableHead>
+              <TableHead>{MessagesResource.ACTIONS}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -41,6 +43,9 @@ const FuncionarioPontos = () => {
                   {format(new Date(ponto.DT_Ponto), 'dd/MM/yyyy HH:mm:ss')}
                 </TableCell>
                 <TableCell>{ponto.ST_Ponto}</TableCell>
+                <TableCell>
+                  <TableActions row={ponto} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

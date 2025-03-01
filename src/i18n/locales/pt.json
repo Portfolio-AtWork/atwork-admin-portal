@@ -53,6 +53,10 @@
     "ACTIONS": "Ações",
     "EMPLOYEE_POINTS": "Pontos do Funcionário",
     "DATE": "Data",
-    "STATUS": "Status"
+    "STATUS": "Status",
+    "EDIT": "Editar",
+    "DELETE": "Deletar",
+    "CANCEL": "Cancelar",
+    "SEE_EMPLOYEE_POINTS": "Ver pontos do funcionário"
   }
 }

@@ -6,7 +6,7 @@ import {
   GetPontoByFuncionarioResult,
 } from '@/services/types/ponto';
 
-export const queryKey = ['gruposByLogin'];
+export const queryKey = ['pontosByFuncionarios'];
 
 export async function fetchPontos(queryParams: GetPontoByFuncionarioRequest) {
   const response = await getPontosByFuncionario(queryParams);
