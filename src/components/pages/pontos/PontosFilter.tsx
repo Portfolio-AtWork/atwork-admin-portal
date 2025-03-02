@@ -1,6 +1,6 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import * as yup from 'yup';
 
@@ -20,7 +20,7 @@ export const PontosFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const {
-    register,
+    control,
     handleSubmit,
     reset,
     formState: { errors },
@@ -57,10 +57,16 @@ export const PontosFilter = () => {
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-1">
-          <DateField
-            label={MessagesResource.DATE}
-            field={{ ...register('DT_Ponto') }}
-            error={errors.DT_Ponto?.message}
+          <Controller
+            name="DT_Ponto"
+            control={control}
+            render={({ field }) => (
+              <DateField
+                label={MessagesResource.DATE}
+                field={field}
+                error={errors.DT_Ponto?.message}
+              />
+            )}
           />
         </div>
         <div className="flex justify-end space-x-2">
