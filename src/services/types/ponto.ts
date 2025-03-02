@@ -1,5 +1,8 @@
+
 export interface GetPontoByFuncionarioRequest {
   ID_Funcionario: string;
+  startDate?: string;
+  endDate?: string;
 }
 export interface GetPontoByFuncionarioResult {
   ID: string;
