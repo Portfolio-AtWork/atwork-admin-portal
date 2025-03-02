@@ -1,25 +1,31 @@
-import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'react-router-dom';
 
-import { DateField } from '@/components/inputs/DateField';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Controller, useForm } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
+import * as yup from 'yup';
+
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '@/components/ui/form';
+import { DateField } from '@/components/inputs/DateField';
 import { MessagesResource } from '@/i18n/resources';
 
-interface FilterFormValues {
-  DT_Ponto: string;
-}
+// Define o esquema de validação (opcional neste caso)
+const pontosFilterSchema = yup.object().shape({
+  DT_Ponto: yup.string(),
+});
+
+// Tipo inferido do esquema
+type FilterFormValues = yup.InferType<typeof pontosFilterSchema>;
 
 export const PontosFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const form = useForm<FilterFormValues>({
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FilterFormValues>({
+    resolver: yupResolver(pontosFilterSchema),
     defaultValues: {
       DT_Ponto: searchParams.get('DT_Ponto') || '',
     },
@@ -38,7 +44,7 @@ export const PontosFilter = () => {
   };
 
   const handleClearFilters = () => {
-    form.reset({
+    reset({
       DT_Ponto: '',
     });
     setSearchParams({});
@@ -49,34 +55,31 @@ export const PontosFilter = () => {
       <h2 className="text-lg font-medium mb-4">
         {MessagesResource.FILTER_POINTS}
       </h2>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-1 gap-4">
-            <FormField
-              control={form.control}
-              name="DT_Ponto"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{MessagesResource.DATE}</FormLabel>
-                  <FormControl>
-                    <DateField label="" register={field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="flex justify-end space-x-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleClearFilters}
-            >
-              {MessagesResource.CLEAR}
-            </Button>
-            <Button type="submit">{MessagesResource.FILTER}</Button>
-          </div>
-        </form>
-      </Form>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="space-y-1">
+          <Controller
+            name="DT_Ponto"
+            control={control}
+            render={({ field }) => (
+              <DateField
+                label={MessagesResource.DATE}
+                field={field}
+                error={errors.DT_Ponto?.message}
+              />
+            )}
+          />
+        </div>
+        <div className="flex justify-end space-x-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={handleClearFilters}
+          >
+            {MessagesResource.CLEAR}
+          </Button>
+          <Button type="submit">{MessagesResource.FILTER}</Button>
+        </div>
+      </form>
     </div>
   );
 };
