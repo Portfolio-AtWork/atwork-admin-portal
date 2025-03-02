@@ -1,4 +1,3 @@
-
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { PageHeader } from '@/components/layout/PageHeader';
@@ -11,24 +10,24 @@ import { MessagesResource } from '@/i18n/resources';
 const Pontos = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
-  
+
   const startDate = searchParams.get('startDate') || undefined;
   const endDate = searchParams.get('endDate') || undefined;
-  
-  const fetchPontos = useGetPontosByFuncionario({ 
+
+  const fetchPontos = useGetPontosByFuncionario({
     ID_Funcionario: id,
     startDate,
-    endDate
+    endDate,
   });
 
   return (
     <>
       <PageHeader title={MessagesResource.EMPLOYEE_POINTS} />
-      <PontosFilter />
       <LoadingMessage
         isLoading={fetchPontos.isLoading}
         error={fetchPontos.error}
       />
+      <PontosFilter />
       <PontosTable pontos={fetchPontos.data} />
     </>
   );

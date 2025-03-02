@@ -1,4 +1,3 @@
-
 import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 
@@ -30,19 +29,19 @@ export const PontosFilter = () => {
 
   const onSubmit = (data: FilterFormValues) => {
     const params = new URLSearchParams();
-    
+
     if (data.startDate) {
       params.set('startDate', data.startDate);
     } else {
       params.delete('startDate');
     }
-    
+
     if (data.endDate) {
       params.set('endDate', data.endDate);
     } else {
       params.delete('endDate');
     }
-    
+
     setSearchParams(params);
   };
 
@@ -56,7 +55,9 @@ export const PontosFilter = () => {
 
   return (
     <div className="mb-4 p-4 rounded-md border">
-      <h2 className="text-lg font-medium mb-4">{MessagesResource.FILTER_POINTS}</h2>
+      <h2 className="text-lg font-medium mb-4">
+        {MessagesResource.FILTER_POINTS}
+      </h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -67,10 +68,7 @@ export const PontosFilter = () => {
                 <FormItem>
                   <FormLabel>{MessagesResource.START_DATE}</FormLabel>
                   <FormControl>
-                    <Input
-                      type="date"
-                      {...field}
-                    />
+                    <Input type="date" {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -82,26 +80,21 @@ export const PontosFilter = () => {
                 <FormItem>
                   <FormLabel>{MessagesResource.END_DATE}</FormLabel>
                   <FormControl>
-                    <Input
-                      type="date"
-                      {...field}
-                    />
+                    <Input type="date" {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
           </div>
           <div className="flex justify-end space-x-2">
-            <Button 
-              type="button" 
-              variant="outline" 
+            <Button
+              type="button"
+              variant="outline"
               onClick={handleClearFilters}
             >
               {MessagesResource.CLEAR}
             </Button>
-            <Button type="submit">
-              {MessagesResource.FILTER}
-            </Button>
+            <Button type="submit">{MessagesResource.FILTER}</Button>
           </div>
         </form>
       </Form>
