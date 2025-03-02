@@ -1,3 +1,4 @@
+
 {
   "translation": {
     "MENU": "Menu",
@@ -65,6 +66,8 @@
     "APPROVED": "Aprovado",
     "PENDING": "Pendente",
     "APPROVE_POINT": "Aprovar Ponto",
-    "CANCEL_POINT": "Cancelar Ponto"
+    "CANCEL_POINT": "Cancelar Ponto",
+    "APPROVE_POINT_CONFIRMATION": "Tem certeza que deseja aprovar este ponto? Esta ação não pode ser desfeita.",
+    "CANCEL_POINT_CONFIRMATION": "Tem certeza que deseja cancelar este ponto? Esta ação não pode ser desfeita."
   }
 }

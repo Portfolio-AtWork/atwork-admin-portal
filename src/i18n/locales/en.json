@@ -1,3 +1,4 @@
+
 {
   "translation": {
     "MENU": "Menu",
@@ -53,6 +54,20 @@
     "ACTIONS": "Actions",
     "EMPLOYEE_POINTS": "Employee Points",
     "DATE": "Date",
-    "STATUS": "Status"
+    "STATUS": "Status",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "SEE_EMPLOYEE_POINTS": "See employee points",
+    "CONFIRM_CANCELLATION": "Confirm Cancellation",
+    "CANCEL_EMPLOYEE_CONFIRMATION": "Are you sure you want to cancel the employee {funcionario}? This action cannot be undone.",
+    "YES": "Yes", 
+    "NO": "No",
+    "APPROVED": "Approved",
+    "PENDING": "Pending",
+    "APPROVE_POINT": "Approve Point",
+    "CANCEL_POINT": "Cancel Point",
+    "APPROVE_POINT_CONFIRMATION": "Are you sure you want to approve this point? This action cannot be undone.",
+    "CANCEL_POINT_CONFIRMATION": "Are you sure you want to cancel this point? This action cannot be undone."
   }
 }
