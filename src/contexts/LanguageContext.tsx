@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next';
 import React, { createContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -12,19 +13,25 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined,
 );
 
+// eslint-disable-next-line
+export let _t: TFunction<'translation', undefined> = undefined;
+
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
+
+  _t = t;
 
   const [language, setLanguageState] = useState<Language>(
     i18n.language as Language,
   );
 
   const setLanguage = (lang: Language) => {
-    localStorage.setItem('atWorkLanguage', lang)
+    localStorage.setItem('atWorkLanguage', lang);
     i18n.changeLanguage(lang);
     setLanguageState(lang);
+    window.location.reload();
   };
 
   return (
@@ -34,4 +41,4 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export default LanguageContext
+export default LanguageContext;

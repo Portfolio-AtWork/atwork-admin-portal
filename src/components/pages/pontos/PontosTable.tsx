@@ -1,4 +1,3 @@
-
 import { format } from 'date-fns';
 import { Check, LoaderCircle, X } from 'lucide-react';
 import { useState } from 'react';
@@ -38,7 +37,8 @@ export const PontosTable = ({
 }) => {
   const approvePonto = useApprovePonto();
   const cancelPonto = useCancelPonto();
-  const [selectedPonto, setSelectedPonto] = useState<GetPontoByFuncionarioResult | null>(null);
+  const [selectedPonto, setSelectedPonto] =
+    useState<GetPontoByFuncionarioResult | null>(null);
   const [isApproveDialogOpen, setIsApproveDialogOpen] = useState(false);
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
 
@@ -101,19 +101,19 @@ export const PontosTable = ({
                   {format(new Date(ponto.DT_Ponto), 'dd/MM/yyyy HH:mm:ss')}
                 </TableCell>
                 <TableCell>
-                  <TableActions 
+                  <TableActions
                     row={ponto}
                     customActions={[
                       {
-                        action: handleApprovePoint,
+                        action: ponto.ST_Ponto === 'P' && handleApprovePoint,
                         title: MessagesResource.APPROVE_POINT,
-                        icon: <Check color="#16d057" />
+                        icon: <Check color="#16d057" />,
                       },
                       {
-                        action: handleCancelPoint,
+                        action: ponto.ST_Ponto === 'P' && handleCancelPoint,
                         title: MessagesResource.CANCEL_POINT,
-                        icon: <X color="#ee0606" />
-                      }
+                        icon: <X color="#ee0606" />,
+                      },
                     ]}
                   />
                 </TableCell>

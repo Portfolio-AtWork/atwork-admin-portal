@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
-
 import { StringWithOptionalParams } from './types';
+
+import { _t } from '@/contexts/LanguageContext';
 
 export type ResourceHandler<
   TKeys extends keyof Record<string, StringWithOptionalParams>,
@@ -10,23 +10,16 @@ function set<TKeys>(_: never, key: TKeys): boolean {
   throw new Error(`Can not assign value to a read-only property ${key}`);
 }
 
-let t = undefined;
-
 export function createProxyHandler<TKeys extends string>(
   baseJSON: Record<string, string>,
 ): ResourceHandler<TKeys> {
   const proxyHandler: ResourceHandler<TKeys> = {
     get: (_: never, key: TKeys) => {
-      if (!t) {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        t = useTranslation().t;
-      }
-
       const hasKey = key in baseJSON;
 
       if (!hasKey) return key;
 
-      const baseString = t(key);
+      const baseString = _t(key);
       const result = new String(baseString) as StringWithOptionalParams;
 
       function withParameters(params: Record<string, never>): string {
