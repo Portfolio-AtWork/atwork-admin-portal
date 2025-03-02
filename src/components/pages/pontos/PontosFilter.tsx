@@ -1,7 +1,7 @@
-
 import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 
+import { DateField } from '@/components/inputs/DateField';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -10,7 +10,6 @@ import {
   FormItem,
   FormLabel,
 } from '@/components/ui/form';
-import { DateField } from '@/components/inputs/DateField';
 import { MessagesResource } from '@/i18n/resources';
 
 interface FilterFormValues {
@@ -60,10 +59,7 @@ export const PontosFilter = () => {
                 <FormItem>
                   <FormLabel>{MessagesResource.DATE}</FormLabel>
                   <FormControl>
-                    <DateField
-                      label=""
-                      field={field}
-                    />
+                    <DateField label="" register={field} />
                   </FormControl>
                 </FormItem>
               )}
