@@ -1,3 +1,4 @@
+
 import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 
@@ -9,12 +10,11 @@ import {
   FormItem,
   FormLabel,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { DateField } from '@/components/inputs/DateField';
 import { MessagesResource } from '@/i18n/resources';
 
 interface FilterFormValues {
-  startDate: string;
-  endDate: string;
+  DT_Ponto: string;
 }
 
 export const PontosFilter = () => {
@@ -22,24 +22,17 @@ export const PontosFilter = () => {
 
   const form = useForm<FilterFormValues>({
     defaultValues: {
-      startDate: searchParams.get('startDate') || '',
-      endDate: searchParams.get('endDate') || '',
+      DT_Ponto: searchParams.get('DT_Ponto') || '',
     },
   });
 
   const onSubmit = (data: FilterFormValues) => {
     const params = new URLSearchParams();
 
-    if (data.startDate) {
-      params.set('startDate', data.startDate);
+    if (data.DT_Ponto) {
+      params.set('DT_Ponto', data.DT_Ponto);
     } else {
-      params.delete('startDate');
-    }
-
-    if (data.endDate) {
-      params.set('endDate', data.endDate);
-    } else {
-      params.delete('endDate');
+      params.delete('DT_Ponto');
     }
 
     setSearchParams(params);
@@ -47,8 +40,7 @@ export const PontosFilter = () => {
 
   const handleClearFilters = () => {
     form.reset({
-      startDate: '',
-      endDate: '',
+      DT_Ponto: '',
     });
     setSearchParams({});
   };
@@ -60,27 +52,18 @@ export const PontosFilter = () => {
       </h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             <FormField
               control={form.control}
-              name="startDate"
+              name="DT_Ponto"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{MessagesResource.START_DATE}</FormLabel>
+                  <FormLabel>{MessagesResource.DATE}</FormLabel>
                   <FormControl>
-                    <Input type="date" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="endDate"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{MessagesResource.END_DATE}</FormLabel>
-                  <FormControl>
-                    <Input type="date" {...field} />
+                    <DateField
+                      label=""
+                      register={field}
+                    />
                   </FormControl>
                 </FormItem>
               )}

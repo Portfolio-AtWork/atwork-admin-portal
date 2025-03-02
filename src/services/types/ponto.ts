@@ -3,6 +3,7 @@ export interface GetPontoByFuncionarioRequest {
   ID_Funcionario: string;
   startDate?: string;
   endDate?: string;
+  DT_Ponto?: string;
 }
 export interface GetPontoByFuncionarioResult {
   ID: string;

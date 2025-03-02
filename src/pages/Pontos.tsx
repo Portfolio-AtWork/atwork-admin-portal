@@ -1,3 +1,4 @@
+
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { PageHeader } from '@/components/layout/PageHeader';
@@ -11,13 +12,11 @@ const Pontos = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
 
-  const startDate = searchParams.get('startDate') || undefined;
-  const endDate = searchParams.get('endDate') || undefined;
+  const DT_Ponto = searchParams.get('DT_Ponto') || undefined;
 
   const fetchPontos = useGetPontosByFuncionario({
     ID_Funcionario: id,
-    startDate,
-    endDate,
+    DT_Ponto,
   });
 
   return (
