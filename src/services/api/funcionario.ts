@@ -3,6 +3,7 @@ import { AxiosResponse } from 'axios';
 import api from '../axios';
 import { ObjectResponse } from '../types/base';
 import {
+  CancelFuncionarioCommand,
   CreateFuncionarioCommand,
   GetFuncionariosByGrupoRequest,
   GetFuncionariosByGrupoResult,
@@ -22,4 +23,11 @@ export function createFuncionario(values: CreateFuncionarioCommand) {
     CreateFuncionarioCommand,
     AxiosResponse<ObjectResponse<boolean>>
   >(BASE_URL, values);
+}
+
+export function cancelFuncionario(ID_Funcionario: string) {
+  return api.put<
+    CancelFuncionarioCommand,
+    AxiosResponse<ObjectResponse<boolean>>
+  >(`${BASE_URL}/cancel`, { ID_Funcionario });
 }

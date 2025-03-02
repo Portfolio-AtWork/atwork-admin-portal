@@ -10,13 +10,17 @@ function set<TKeys>(_: never, key: TKeys): boolean {
   throw new Error(`Can not assign value to a read-only property ${key}`);
 }
 
+let t = undefined;
+
 export function createProxyHandler<TKeys extends string>(
   baseJSON: Record<string, string>,
 ): ResourceHandler<TKeys> {
   const proxyHandler: ResourceHandler<TKeys> = {
     get: (_: never, key: TKeys) => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const { t } = useTranslation();
+      if (!t) {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        t = useTranslation().t;
+      }
 
       const hasKey = key in baseJSON;
 

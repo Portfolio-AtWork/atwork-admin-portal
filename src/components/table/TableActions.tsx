@@ -52,8 +52,9 @@ export const TableActions = ({
           <CopyX className="w-5 h-5" color="#b30000" />
         </button>
       )}
-      {customActions.map((item) => (
+      {customActions.map((item, idx) => (
         <button
+          key={idx.toString()}
           type="button"
           onClick={() => item.action(row)}
           title={item.title}

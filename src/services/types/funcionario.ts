@@ -16,3 +16,7 @@ export interface CreateFuncionarioCommand {
   ID_Grupo: string;
   Email: string;
 }
+
+export interface CancelFuncionarioCommand {
+  ID_Funcionario: string;
+}

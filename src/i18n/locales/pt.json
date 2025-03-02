@@ -1,4 +1,3 @@
-
 {
   "translation": {
     "MENU": "Menu",
@@ -60,8 +59,12 @@
     "CANCEL": "Cancelar",
     "SEE_EMPLOYEE_POINTS": "Ver pontos do funcionário",
     "CONFIRM_CANCELLATION": "Confirmar Cancelamento",
-    "CANCEL_EMPLOYEE_CONFIRMATION": "Tem certeza que deseja cancelar o funcionário {0}? Esta ação não pode ser desfeita.",
+    "CANCEL_EMPLOYEE_CONFIRMATION": "Tem certeza que deseja cancelar o funcionário {funcionario}? Esta ação não pode ser desfeita.",
     "YES": "Sim",
-    "NO": "Não"
+    "NO": "Não",
+    "APPROVED": "Aprovado",
+    "PENDING": "Pendente",
+    "APPROVE_POINT": "Aprovar Ponto",
+    "CANCEL_POINT": "Cancelar Ponto"
   }
 }

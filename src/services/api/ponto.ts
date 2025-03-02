@@ -3,6 +3,8 @@ import { AxiosResponse } from 'axios';
 import api from '../axios';
 import { ObjectResponse } from '../types/base';
 import {
+  ApprovePontoCommand,
+  CancelPontoCommand,
   GetPontoByFuncionarioRequest,
   GetPontoByFuncionarioResult,
 } from '../types/ponto';
@@ -18,4 +20,18 @@ export async function getPontosByFuncionario(
   >(`${BASE_URL}/byFuncionario`, {
     params: queryParams,
   });
+}
+
+export async function approvePonto(values: ApprovePontoCommand) {
+  return await api.put<
+    ApprovePontoCommand,
+    AxiosResponse<ObjectResponse<boolean>>
+  >(`${BASE_URL}/approvePonto`, values);
+}
+
+export async function cancelPonto(values: CancelPontoCommand) {
+  return await api.put<
+    CancelPontoCommand,
+    AxiosResponse<ObjectResponse<boolean>>
+  >(`${BASE_URL}/cancelPonto`, values);
 }

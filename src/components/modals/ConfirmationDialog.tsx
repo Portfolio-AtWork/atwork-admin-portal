@@ -1,5 +1,4 @@
-
-import React from 'react';
+import { FC } from 'react';
 
 import {
   AlertDialog,
@@ -13,37 +12,29 @@ import {
 } from '@/components/ui/alert-dialog';
 import { MessagesResource } from '@/i18n/resources';
 
-interface CancellationModalProps {
+interface ConfirmationModalProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   title?: string;
   description?: string;
-  itemName?: string;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-export const CancellationModal: React.FC<CancellationModalProps> = ({
+export const ConfirmationDialog: FC<ConfirmationModalProps> = ({
   isOpen,
   onOpenChange,
   title = MessagesResource.CONFIRM_CANCELLATION,
-  description = MessagesResource.CANCEL_EMPLOYEE_CONFIRMATION,
-  itemName = '',
+  description = MessagesResource.CANCEL,
   onConfirm,
   onCancel,
 }) => {
-  const formattedDescription = itemName 
-    ? description.replace('{0}', itemName) 
-    : description;
-
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
-          <AlertDialogDescription>
-            {formattedDescription}
-          </AlertDialogDescription>
+          <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel onClick={onCancel}>

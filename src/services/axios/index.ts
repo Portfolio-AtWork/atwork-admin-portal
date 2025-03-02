@@ -17,7 +17,6 @@ export const api = axios.create({
 api.interceptors.response.use(
   (response) => {
     const hasNotifications = Array.isArray(response?.data?.notifications);
-
     if (hasNotifications) {
       response.data.notifications.forEach((notification) => {
         const toastType = getNotificationKind(notification.kind);
@@ -31,7 +30,6 @@ api.interceptors.response.use(
     const hasNotifications = Array.isArray(
       error?.response?.data?.notifications,
     );
-
     if (hasNotifications) {
       error.response.data.notifications.forEach((notification) => {
         const toastType = getNotificationKind(notification.kind);

@@ -1,9 +1,8 @@
-
 import { Check, ScrollText, X } from 'lucide-react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { CancellationModal } from '@/components/modals/CancellationModal';
+import { ConfirmationDialog } from '@/components/modals/ConfirmationDialog';
 import { TableActions } from '@/components/table/TableActions';
 import {
   Table,
@@ -13,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useCancelFuncionario } from '@/hooks/api/funcionario/useCancelFunctionario';
 import { MessagesResource } from '@/i18n/resources';
 import { GetFuncionariosByGrupoResult } from '@/services/types/funcionario';
 
@@ -22,8 +22,12 @@ export const FuncionariosTable = ({
   funcionarios: GetFuncionariosByGrupoResult[];
 }) => {
   const navigate = useNavigate();
-  const [selectedFuncionario, setSelectedFuncionario] = useState<GetFuncionariosByGrupoResult | null>(null);
+
+  const [selectedFuncionario, setSelectedFuncionario] =
+    useState<GetFuncionariosByGrupoResult | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const updateStatusFunc = useCancelFuncionario();
 
   const getStatusDisplay = (status: string) => {
     switch (status) {
@@ -40,27 +44,30 @@ export const FuncionariosTable = ({
     navigate(`/funcionario/${row.ID}/pontos`);
   }
 
-  function openCancelFuncionarioModal(funcionarioId: string) {
-    const funcionario = funcionarios.find((f) => f.ID === funcionarioId);
-    if (funcionario) {
-      setSelectedFuncionario(funcionario);
-      setIsModalOpen(true);
-      // Change URL without navigating
-      window.history.pushState({}, '', `/cancelar-funcionario/${funcionarioId}`);
-    }
-  }
+  const openCancelFuncionarioModal = useCallback(
+    (row: GetFuncionariosByGrupoResult) => {
+      const funcionario = funcionarios.find((f) => f.ID === row.ID);
+      if (funcionario) {
+        setSelectedFuncionario(funcionario);
+        setIsModalOpen(true);
+        // Change URL without navigating
+        window.history.pushState({}, '', `/cancelar-funcionario/${row.ID}`);
+      }
+    },
+    [funcionarios],
+  );
 
-  function handleConfirmCancel() {
-    // Here you would implement the actual cancellation logic
-    console.log(`Cancelando funcionário: ${selectedFuncionario?.Nome}`);
-    setIsModalOpen(false);
-    // Return to previous URL
-    window.history.back();
-  }
+  const handleConfirmCancel = useCallback(() => {
+    updateStatusFunc.mutateAsync(selectedFuncionario.ID).then((response) => {
+      if (response) {
+        setIsModalOpen(false);
+        window.history.back();
+      }
+    });
+  }, [selectedFuncionario?.ID, updateStatusFunc]);
 
   function handleCancelModal() {
     setIsModalOpen(false);
-    // Return to previous URL
     window.history.back();
   }
 
@@ -96,11 +103,13 @@ export const FuncionariosTable = ({
                 <TableCell>
                   <TableActions
                     row={funcionario}
-                    cancelAction={openCancelFuncionarioModal}
+                    cancelAction={
+                      funcionario.ST_Status === 'A' &&
+                      openCancelFuncionarioModal
+                    }
                     customActions={[
                       {
                         action: handleRowClick,
-                        color: 'yellow',
                         title: MessagesResource.SEE_EMPLOYEE_POINTS,
                         icon: <ScrollText className="w-5 h-5" />,
                       },
@@ -113,10 +122,12 @@ export const FuncionariosTable = ({
         </Table>
       </div>
 
-      <CancellationModal
+      <ConfirmationDialog
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
-        itemName={selectedFuncionario?.Nome || ''}
+        description={MessagesResource.CANCEL_EMPLOYEE_CONFIRMATION.withParameters(
+          { funcionario: selectedFuncionario?.Nome || '' },
+        )}
         onConfirm={handleConfirmCancel}
         onCancel={handleCancelModal}
       />

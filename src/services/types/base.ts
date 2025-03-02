@@ -17,3 +17,5 @@ export interface ObjectResponse<T> {
   notifications: Notification[];
   ok: boolean;
 }
+
+//export type Guid = `${string}-${string}-${string}-${string}-${string}`;
