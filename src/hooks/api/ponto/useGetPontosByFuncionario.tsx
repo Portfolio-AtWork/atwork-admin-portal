@@ -1,4 +1,3 @@
-
 import { useQuery } from '@tanstack/react-query';
 
 import { getPontosByFuncionario } from '@/services/api/ponto';
@@ -20,5 +19,6 @@ export function useGetPontosByFuncionario(
   return useQuery<GetPontoByFuncionarioResult[], Error>({
     queryKey: [...queryKey, queryParams],
     queryFn: () => fetchPontos(queryParams),
+    enabled: !!queryParams.DT_Ponto && !!queryParams.ID_Funcionario,
   });
 }

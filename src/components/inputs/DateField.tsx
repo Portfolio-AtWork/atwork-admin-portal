@@ -8,6 +8,7 @@ interface DateInputProps {
   placeholder?: string;
   error?: string;
   register: UseFormRegisterReturn;
+  max?: string;
 }
 
 export const DateField = ({
@@ -15,11 +16,17 @@ export const DateField = ({
   placeholder = '',
   error,
   register,
+  max,
 }: DateInputProps) => {
   return (
     <>
       {label && <Label>{label}</Label>}
-      <Input type="date" placeholder={placeholder || label} {...register} />
+      <Input
+        type="date"
+        placeholder={placeholder || label}
+        {...register}
+        max={max}
+      />
       {error && <p className="mt-0 text-sm text-red-500">{error}</p>}
     </>
   );

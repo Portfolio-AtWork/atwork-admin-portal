@@ -1,11 +1,10 @@
-
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { Button } from '@/components/ui/button';
 import { DateField } from '@/components/inputs/DateField';
+import { Button } from '@/components/ui/button';
 import { MessagesResource } from '@/i18n/resources';
 
 // Define o esquema de validação (opcional neste caso)
@@ -20,10 +19,10 @@ export const PontosFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const {
-    control,
     handleSubmit,
     reset,
     formState: { errors },
+    register,
   } = useForm<FilterFormValues>({
     resolver: yupResolver(pontosFilterSchema),
     defaultValues: {
@@ -57,24 +56,15 @@ export const PontosFilter = () => {
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-1">
-          <Controller
-            name="DT_Ponto"
-            control={control}
-            render={({ field }) => (
-              <DateField
-                label={MessagesResource.DATE}
-                field={field}
-                error={errors.DT_Ponto?.message}
-              />
-            )}
+          <DateField
+            label={MessagesResource.DATE}
+            register={register('DT_Ponto')}
+            error={errors.DT_Ponto?.message}
+            max={new Date().toISOString().split('T')[0]}
           />
         </div>
         <div className="flex justify-end space-x-2">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={handleClearFilters}
-          >
+          <Button type="button" variant="outline" onClick={handleClearFilters}>
             {MessagesResource.CLEAR}
           </Button>
           <Button type="submit">{MessagesResource.FILTER}</Button>

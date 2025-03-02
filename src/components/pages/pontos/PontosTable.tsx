@@ -84,7 +84,7 @@ export const PontosTable = ({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {pontos.map((ponto: GetPontoByFuncionarioResult) => (
+            {(pontos || []).map((ponto: GetPontoByFuncionarioResult) => (
               <TableRow key={ponto.ID}>
                 <TableCell
                   title={
