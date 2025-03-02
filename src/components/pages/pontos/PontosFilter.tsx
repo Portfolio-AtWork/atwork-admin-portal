@@ -62,7 +62,7 @@ export const PontosFilter = () => {
                   <FormControl>
                     <DateField
                       label=""
-                      register={field}
+                      field={field}
                     />
                   </FormControl>
                 </FormItem>
