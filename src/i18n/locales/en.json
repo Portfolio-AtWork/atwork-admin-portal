@@ -68,6 +68,11 @@
     "APPROVE_POINT": "Approve Point",
     "CANCEL_POINT": "Cancel Point",
     "APPROVE_POINT_CONFIRMATION": "Are you sure you want to approve this point? This action cannot be undone.",
-    "CANCEL_POINT_CONFIRMATION": "Are you sure you want to cancel this point? This action cannot be undone."
+    "CANCEL_POINT_CONFIRMATION": "Are you sure you want to cancel this point? This action cannot be undone.",
+    "FILTER_POINTS": "Filter Points",
+    "START_DATE": "Start Date",
+    "END_DATE": "End Date",
+    "FILTER": "Filter",
+    "CLEAR": "Clear"
   }
 }

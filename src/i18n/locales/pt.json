@@ -68,6 +68,11 @@
     "APPROVE_POINT": "Aprovar Ponto",
     "CANCEL_POINT": "Cancelar Ponto",
     "APPROVE_POINT_CONFIRMATION": "Tem certeza que deseja aprovar este ponto? Esta ação não pode ser desfeita.",
-    "CANCEL_POINT_CONFIRMATION": "Tem certeza que deseja cancelar este ponto? Esta ação não pode ser desfeita."
+    "CANCEL_POINT_CONFIRMATION": "Tem certeza que deseja cancelar este ponto? Esta ação não pode ser desfeita.",
+    "FILTER_POINTS": "Filtrar Pontos",
+    "START_DATE": "Data Início",
+    "END_DATE": "Data Fim",
+    "FILTER": "Filtrar",
+    "CLEAR": "Limpar"
   }
 }
