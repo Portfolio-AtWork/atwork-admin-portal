@@ -1,19 +1,16 @@
-import { Trash2 } from 'lucide-react';
+
 import { useMemo, useState } from 'react';
 
 import { PageHeader } from '@/components/layout/PageHeader';
 import { LoadingMessage } from '@/components/LoadingMessage';
-import { ConfirmationDialog } from '@/components/modals/ConfirmationDialog';
 import { CreateEmployeeDialog } from '@/components/pages/funcionarios/CreateEmployeeDialog';
 import { CreateGroupDialog } from '@/components/pages/funcionarios/CreateGroupDialog';
+import { DeleteGroupsDialog } from '@/components/pages/funcionarios/DeleteGroupsDialog';
 import { GrupoAccordionItem } from '@/components/pages/funcionarios/GrupoAccordionItem';
 import { Accordion } from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
 import { useCreateFuncionario } from '@/hooks/api/funcionario/useCreateFuncionario';
 import { useCreateGrupo } from '@/hooks/api/grupo/useCreateGrupo';
-import { useDeleteGrupos } from '@/hooks/api/grupo/useDeleteGrupos';
 import { useGetGruposByLogin } from '@/hooks/api/grupo/useGetGruposByLogin';
-import { useToast } from '@/hooks/use-toast';
 import { MessagesResource } from '@/i18n/resources';
 import { CreateFuncionarioCommand } from '@/services/types/funcionario';
 import { CreateGrupoCommand } from '@/services/types/grupo';
@@ -22,12 +19,9 @@ const Funcionarios = () => {
   const [openGroup, setOpenGroup] = useState(false);
   const [openEmployee, setOpenEmployee] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  const { toast } = useToast();
   const fetchGrupos = useGetGruposByLogin();
   const mutateGrupos = useCreateGrupo();
-  const deleteGrupos = useDeleteGrupos();
   const mutateFunc = useCreateFuncionario();
 
   function addFuncionario(values: CreateFuncionarioCommand) {
@@ -48,20 +42,9 @@ const Funcionarios = () => {
     });
   }
 
-  function handleDeleteGroups() {
-    if (selected.length === 0) {
-      toast({
-        title: MessagesResource.ERROR,
-        description: MessagesResource.SELECT_AT_LEAST_ONE_GROUP,
-        variant: 'destructive',
-      });
-      return;
-    }
-    setDeleteModalOpen(true);
-  }
-
-  function confirmDeleteGroups() {
-    deleteGrupos.mutateAsync({ ListaGrupos: selected });
+  function handleDeleteSuccess() {
+    fetchGrupos.refetch();
+    setSelected([]);
   }
 
   const RenderGrupos = useMemo(
@@ -88,14 +71,10 @@ const Funcionarios = () => {
     <>
       <PageHeader title={MessagesResource.EMPLOYEE_GROUPS}>
         <div className="flex gap-2">
-          <Button
-            variant="destructive"
-            onClick={handleDeleteGroups}
-            disabled={selected.length === 0}
-          >
-            <Trash2 size={16} />
-            {MessagesResource.DELETE}
-          </Button>
+          <DeleteGroupsDialog 
+            selected={selected} 
+            onDeleteSuccess={handleDeleteSuccess} 
+          />
           <CreateEmployeeDialog
             open={openEmployee}
             onOpenChange={setOpenEmployee}
@@ -115,15 +94,6 @@ const Funcionarios = () => {
         error={fetchGrupos.error}
       />
       <RenderGrupos />
-
-      <ConfirmationDialog
-        isOpen={deleteModalOpen}
-        onOpenChange={setDeleteModalOpen}
-        title={MessagesResource.CONFIRM_DELETION}
-        description={MessagesResource.DELETE_GROUPS_CONFIRMATION}
-        onConfirm={confirmDeleteGroups}
-        onCancel={() => setDeleteModalOpen(false)}
-      />
     </>
   );
 };

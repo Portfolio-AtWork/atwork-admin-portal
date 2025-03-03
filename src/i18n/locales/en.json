@@ -73,6 +73,12 @@
     "START_DATE": "Start Date",
     "END_DATE": "End Date",
     "FILTER": "Filter",
-    "CLEAR": "Clear"
+    "CLEAR": "Clear",
+    "SELECT_AT_LEAST_ONE_GROUP": "Select at least one group",
+    "CONFIRM_DELETION": "Confirm deletion",
+    "DELETE_GROUPS_CONFIRMATION": "Confirm group deletion",
+    "GROUPS_DELETED_SUCCESSFULLY": "Groups deleted successfully",
+    "ERROR_DELETING_GROUPS": "Error deleting groups",
+    "DELETE_GROUPS": "Delete Groups"
   }
 }

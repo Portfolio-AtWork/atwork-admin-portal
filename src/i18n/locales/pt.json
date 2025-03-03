@@ -1,3 +1,4 @@
+
 {
   "translation": {
     "MENU": "Menu",
@@ -75,6 +76,9 @@
     "CLEAR": "Limpar",
     "SELECT_AT_LEAST_ONE_GROUP": "Selecione pelo menos um grupo",
     "CONFIRM_DELETION": "Confirmar deleção",
-    "DELETE_GROUPS_CONFIRMATION": "Confirmar deleção de grupos"
+    "DELETE_GROUPS_CONFIRMATION": "Confirmar deleção de grupos",
+    "GROUPS_DELETED_SUCCESSFULLY": "Grupos deletados com sucesso",
+    "ERROR_DELETING_GROUPS": "Erro ao deletar grupos",
+    "DELETE_GROUPS": "Deletar Grupos"
   }
 }
