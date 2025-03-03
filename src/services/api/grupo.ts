@@ -5,6 +5,7 @@ import { ObjectResponse } from '../types/base';
 
 import {
   CreateGrupoCommand,
+  DeleteGruposCommand,
   GetGruposByLoginRequest,
   GetGruposByLoginResult,
 } from '@/services/types/grupo';
@@ -23,4 +24,11 @@ export function createGrupo(values: CreateGrupoCommand) {
     BASE_URL,
     values,
   );
+}
+
+export function deleteGrupos(values: DeleteGruposCommand) {
+  return api.delete<
+    DeleteGruposCommand,
+    AxiosResponse<ObjectResponse<boolean>>
+  >(`${BASE_URL}/deleteGrupos`, { data: values });
 }

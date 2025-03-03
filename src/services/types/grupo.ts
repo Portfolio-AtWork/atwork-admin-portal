@@ -8,3 +8,7 @@ export interface GetGruposByLoginResult {
 export interface CreateGrupoCommand {
   Nome: string;
 }
+
+export interface DeleteGruposCommand {
+  ListaGrupos: string[];
+}

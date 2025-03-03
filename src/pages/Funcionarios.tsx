@@ -16,6 +16,7 @@ import { CreateGrupoCommand } from '@/services/types/grupo';
 const Funcionarios = () => {
   const [openGroup, setOpenGroup] = useState(false);
   const [openEmployee, setOpenEmployee] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
 
   const fetchGrupos = useGetGruposByLogin();
   const mutateGrupos = useCreateGrupo();
@@ -47,12 +48,17 @@ const Funcionarios = () => {
       return (
         <Accordion type="multiple" className="w-full">
           {fetchGrupos.data.map((grupo) => (
-            <GrupoAccordionItem key={grupo.ID} grupo={grupo} />
+            <GrupoAccordionItem
+              key={grupo.ID}
+              grupo={grupo}
+              selected={selected}
+              setSelected={setSelected}
+            />
           ))}
         </Accordion>
       );
     },
-    [fetchGrupos.data],
+    [fetchGrupos.data, selected],
   );
 
   return (
