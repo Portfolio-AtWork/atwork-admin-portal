@@ -1,4 +1,3 @@
-
 {
   "translation": {
     "MENU": "Menu",
@@ -73,6 +72,9 @@
     "START_DATE": "Data Início",
     "END_DATE": "Data Fim",
     "FILTER": "Filtrar",
-    "CLEAR": "Limpar"
+    "CLEAR": "Limpar",
+    "SELECT_AT_LEAST_ONE_GROUP": "Selecione pelo menos um grupo",
+    "CONFIRM_DELETION": "Confirmar deleção",
+    "DELETE_GROUPS_CONFIRMATION": "Confirmar deleção de grupos"
   }
 }

@@ -1,3 +1,4 @@
+import { Trash2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 import { PageHeader } from '@/components/layout/PageHeader';
@@ -16,7 +17,6 @@ import { useToast } from '@/hooks/use-toast';
 import { MessagesResource } from '@/i18n/resources';
 import { CreateFuncionarioCommand } from '@/services/types/funcionario';
 import { CreateGrupoCommand } from '@/services/types/grupo';
-import { Trash2 } from 'lucide-react';
 
 const Funcionarios = () => {
   const [openGroup, setOpenGroup] = useState(false);
@@ -53,7 +53,7 @@ const Funcionarios = () => {
       toast({
         title: MessagesResource.ERROR,
         description: MessagesResource.SELECT_AT_LEAST_ONE_GROUP,
-        variant: "destructive"
+        variant: 'destructive',
       });
       return;
     }
@@ -61,23 +61,7 @@ const Funcionarios = () => {
   }
 
   function confirmDeleteGroups() {
-    deleteGrupos.mutateAsync({ ListaGrupos: selected }).then((response) => {
-      if (response) {
-        toast({
-          title: MessagesResource.SUCCESS,
-          description: MessagesResource.GROUPS_DELETED_SUCCESSFULLY
-        });
-        fetchGrupos.refetch();
-        setSelected([]);
-        setDeleteModalOpen(false);
-      }
-    }).catch((error) => {
-      toast({
-        title: MessagesResource.ERROR,
-        description: error.message || MessagesResource.ERROR_DELETING_GROUPS,
-        variant: "destructive"
-      });
-    });
+    deleteGrupos.mutateAsync({ ListaGrupos: selected });
   }
 
   const RenderGrupos = useMemo(
