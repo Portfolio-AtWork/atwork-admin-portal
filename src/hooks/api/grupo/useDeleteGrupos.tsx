@@ -1,3 +1,4 @@
+
 import { useMutation } from '@tanstack/react-query';
 
 import { deleteGrupos } from '@/services/api/grupo';
@@ -8,7 +9,7 @@ async function mutationDeleteGrupos(values: DeleteGruposCommand) {
   return response.data.value;
 }
 
-export function useCreateGrupo() {
+export function useDeleteGrupos() {
   return useMutation<boolean, Error, DeleteGruposCommand>({
     mutationFn: mutationDeleteGrupos,
   });
