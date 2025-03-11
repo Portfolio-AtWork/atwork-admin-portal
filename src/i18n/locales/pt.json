@@ -1,4 +1,3 @@
-
 {
   "translation": {
     "MENU": "Menu",
@@ -79,6 +78,7 @@
     "DELETE_GROUPS_CONFIRMATION": "Confirmar deleção de grupos",
     "GROUPS_DELETED_SUCCESSFULLY": "Grupos deletados com sucesso",
     "ERROR_DELETING_GROUPS": "Erro ao deletar grupos",
-    "DELETE_GROUPS": "Deletar Grupos"
+    "DELETE_GROUPS": "Deletar Grupos",
+    "TOKEN_HAS_EXPIRED": "Login expirou, faça login novamente"
   }
 }

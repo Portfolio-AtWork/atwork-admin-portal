@@ -15,6 +15,7 @@ export function getNotificationKind(kind: number): NotificationKinds {
 }
 
 export function showNotification(message: string, type: NotificationKinds) {
+  console.log(message, type);
   toast[type](message, {
     position: 'top-right',
     autoClose: 5000,

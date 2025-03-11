@@ -1,5 +1,11 @@
 import { CheckedState } from '@radix-ui/react-checkbox';
-import { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
 
 import { FuncionariosTable } from './FuncionariosTable';
 
@@ -45,6 +51,10 @@ export const GrupoAccordionItem = ({
     },
     [grupo.ID, setSelected],
   );
+
+  useEffect(() => {
+    fetchFunc.refetch();
+  }, [fetchFunc, grupo]);
 
   return (
     <AccordionItem value={grupo.ID} className="rounded-md mb-2">
