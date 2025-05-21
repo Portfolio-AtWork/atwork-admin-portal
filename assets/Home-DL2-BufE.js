@@ -1,1 +1,0 @@
-import{j as e,M as s}from"./index-BBPnCKUP.js";const r=()=>e.jsxs(e.Fragment,{children:[e.jsx("h2",{className:"text-2xl font-bold mb-4",children:s.WELCOME_MESSAGE}),e.jsx("p",{className:"text-muted-foreground",children:s.SELECT_AN_OPTION})]});export{r as default};
