@@ -28,28 +28,6 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
-      - name: Create web.config for Azure SPA routing
-        run: |
-          mkdir -p dist
-          cat <<EOF > dist/web.config
-          <configuration>
-            <system.webServer>
-              <rewrite>
-                <rules>
-                  <rule name="SPA" stopProcessing="true">
-                    <match url=".*" />
-                    <conditions logicalGrouping="MatchAll">
-                      <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-                      <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-                    </conditions>
-                    <action type="Rewrite" url="/index.html" />
-                  </rule>
-                </rules>
-              </rewrite>
-            </system.webServer>
-          </configuration>
-          EOF
-
       - name: Zip artifact for deployment
         run: |
           cd dist
