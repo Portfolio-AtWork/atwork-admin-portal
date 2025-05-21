@@ -4,6 +4,11 @@ import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
+  build: {
+    outDir: 'dist',
+    // Configuração para copiar web.config para a pasta de build
+    assetsInclude: ['web.config']
+  },
   base: '/',
   server: {
     host: '::',
