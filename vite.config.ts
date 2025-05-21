@@ -35,7 +35,7 @@ export default defineConfig(() => ({
       },
     },
   },
-  base: '/atwork-admin-portal/',
+  base: '/',
   server: {
     host: '::',
     port: 8080,

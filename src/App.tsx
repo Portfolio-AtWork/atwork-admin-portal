@@ -23,7 +23,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename='/atwork-admin-portal'>
+      <BrowserRouter>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
