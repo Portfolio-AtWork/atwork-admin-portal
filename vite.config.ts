@@ -9,7 +9,7 @@ export default defineConfig(() => ({
     // Configuração para copiar web.config para a pasta de build
     assetsInclude: ['web.config']
   },
-  base: '/',
+  base: '/atwork-admin-portal/',
   server: {
     host: '::',
     port: 8080,
