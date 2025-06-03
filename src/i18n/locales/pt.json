@@ -79,6 +79,9 @@
     "GROUPS_DELETED_SUCCESSFULLY": "Grupos deletados com sucesso",
     "ERROR_DELETING_GROUPS": "Erro ao deletar grupos",
     "DELETE_GROUPS": "Deletar Grupos",
-    "TOKEN_HAS_EXPIRED": "Login expirou, faça login novamente"
+    "TOKEN_HAS_EXPIRED": "Login expirou, faça login novamente",
+    "TIPO_PONTO": "Tipo de Ponto",
+    "ENTRADA": "Entrada",
+    "SAIDA": "Saída"
   }
 }

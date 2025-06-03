@@ -72,12 +72,37 @@ export const PontosTable = ({
     }
   };
 
+  function formatTitleStatus(st_ponto: string) {
+    switch (st_ponto) {
+      case 'A':
+        return MessagesResource.ACTIVE;
+      case 'P':
+        return MessagesResource.PENDING;
+      case 'C':
+        return MessagesResource.CANCELED;
+      default:
+        return '';
+    }
+  }
+
+  function formatTpPonto(tp_ponto: string) {
+    switch (tp_ponto) {
+      case 'E':
+        return MessagesResource.ENTRADA;
+      case 'S':
+        return MessagesResource.SAIDA;
+      default:
+        return '';
+    }
+  }
+
   return (
     <>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>{MessagesResource.TIPO_PONTO}</TableHead>
               <TableHead>{MessagesResource.STATUS}</TableHead>
               <TableHead>{MessagesResource.DATE}</TableHead>
               <TableHead>{MessagesResource.ACTIONS}</TableHead>
@@ -86,15 +111,8 @@ export const PontosTable = ({
           <TableBody>
             {(pontos || []).map((ponto: GetPontoByFuncionarioResult) => (
               <TableRow key={ponto.ID}>
-                <TableCell
-                  title={
-                    ponto.ST_Ponto === 'A'
-                      ? MessagesResource.ACTIVE
-                      : ponto.ST_Ponto === 'P'
-                        ? MessagesResource.PENDING
-                        : MessagesResource.CANCELED
-                  }
-                >
+                <TableCell>{formatTpPonto(ponto.TP_Ponto)}</TableCell>
+                <TableCell title={formatTitleStatus(ponto.ST_Ponto)}>
                   {getStatusPoint(ponto.ST_Ponto)}
                 </TableCell>
                 <TableCell>

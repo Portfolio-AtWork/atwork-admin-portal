@@ -14,12 +14,15 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!isTokenValid(token)) {
+    const isValid = isTokenValid(token);
+    if (!isValid) {
       showNotification(
         MessagesResource.TOKEN_HAS_EXPIRED.toString(),
         'warning',
       );
       navigate('/login');
+    } else if (window.location.pathname === '/') {
+      navigate('/home');
     }
   }, [navigate]);
 

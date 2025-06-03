@@ -7,6 +7,7 @@ export interface GetPontoByFuncionarioResult {
   ID_Funcionario: string;
   DT_Ponto: Date;
   ST_Ponto: string;
+  TP_Ponto: string;
 }
 
 export interface ApprovePontoCommand {

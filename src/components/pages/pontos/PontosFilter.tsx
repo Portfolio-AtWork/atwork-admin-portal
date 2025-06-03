@@ -15,6 +15,14 @@ const pontosFilterSchema = yup.object().shape({
 // Tipo inferido do esquema
 type FilterFormValues = yup.InferType<typeof pontosFilterSchema>;
 
+const getTodayLocalDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 export const PontosFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -26,7 +34,7 @@ export const PontosFilter = () => {
   } = useForm<FilterFormValues>({
     resolver: yupResolver(pontosFilterSchema),
     defaultValues: {
-      DT_Ponto: searchParams.get('DT_Ponto') || '',
+      DT_Ponto: searchParams.get('DT_Ponto') || getTodayLocalDate(),
     },
   });
 
