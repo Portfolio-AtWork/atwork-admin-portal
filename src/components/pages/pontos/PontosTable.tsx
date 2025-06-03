@@ -1,8 +1,10 @@
-import { format } from 'date-fns';
-import { Check, LoaderCircle, X } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import { useState } from 'react';
 
 import { ConfirmationDialog } from '@/components/modals/ConfirmationDialog';
+import { DateCell } from '@/components/table/cells/DateCell';
+import { StatusPontoCell } from '@/components/table/cells/StatusPontoCell';
+import { TipoPontoCell } from '@/components/table/cells/TipoPontoCell';
 import { TableActions } from '@/components/table/TableActions';
 import {
   Table,
@@ -16,19 +18,6 @@ import { useApprovePonto } from '@/hooks/api/ponto/useApprovePonto';
 import { useCancelPonto } from '@/hooks/api/ponto/useCancelPonto';
 import { MessagesResource } from '@/i18n/resources';
 import { GetPontoByFuncionarioResult } from '@/services/types/ponto';
-
-const getStatusPoint = (ST_Ponto: string) => {
-  switch (ST_Ponto) {
-    case 'A':
-      return <Check color="#16d057" />;
-    case 'P':
-      return <LoaderCircle color="#f4d71f" />;
-    case 'C':
-      return <X color="#ee0606" />;
-    default:
-      return ST_Ponto;
-  }
-};
 
 export const PontosTable = ({
   pontos = [],
@@ -72,28 +61,10 @@ export const PontosTable = ({
     }
   };
 
-  function formatTitleStatus(st_ponto: string) {
-    switch (st_ponto) {
-      case 'A':
-        return MessagesResource.ACTIVE;
-      case 'P':
-        return MessagesResource.PENDING;
-      case 'C':
-        return MessagesResource.CANCELED;
-      default:
-        return '';
-    }
-  }
-
-  function formatTpPonto(tp_ponto: string) {
-    switch (tp_ponto) {
-      case 'E':
-        return MessagesResource.ENTRADA;
-      case 'S':
-        return MessagesResource.SAIDA;
-      default:
-        return '';
-    }
+  function getRowColor(ST_Ponto: string) {
+    if (ST_Ponto === 'C') return 'bg-red-500/25';
+    else if (ST_Ponto === 'P') return 'bg-yellow-500/25';
+    else return 'bg-lime-500/25';
   }
 
   return (
@@ -102,22 +73,18 @@ export const PontosTable = ({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{MessagesResource.TIPO_PONTO}</TableHead>
               <TableHead>{MessagesResource.STATUS}</TableHead>
+              <TableHead>{MessagesResource.TIPO_PONTO}</TableHead>
               <TableHead>{MessagesResource.DATE}</TableHead>
               <TableHead>{MessagesResource.ACTIONS}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {(pontos || []).map((ponto: GetPontoByFuncionarioResult) => (
-              <TableRow key={ponto.ID}>
-                <TableCell>{formatTpPonto(ponto.TP_Ponto)}</TableCell>
-                <TableCell title={formatTitleStatus(ponto.ST_Ponto)}>
-                  {getStatusPoint(ponto.ST_Ponto)}
-                </TableCell>
-                <TableCell>
-                  {format(new Date(ponto.DT_Ponto), 'dd/MM/yyyy HH:mm:ss')}
-                </TableCell>
+              <TableRow key={ponto.ID} className={getRowColor(ponto.ST_Ponto)}>
+                <StatusPontoCell ST_Ponto={ponto.ST_Ponto} />
+                <TipoPontoCell TP_Ponto={ponto.TP_Ponto} />
+                <DateCell value={ponto.DT_Ponto} />
                 <TableCell>
                   <TableActions
                     row={ponto}
