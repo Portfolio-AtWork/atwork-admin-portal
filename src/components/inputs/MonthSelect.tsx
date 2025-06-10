@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 const months = [
   { value: 1, label: 'Janeiro' },
@@ -27,15 +28,17 @@ type MonthSelectProps = {
   label?: string;
   value: string;
   onChange: (value: string) => void;
+  className?: string;
 };
 
 export const MonthSelect = ({
   label = 'Mês',
   value,
   onChange,
+  className,
 }: MonthSelectProps) => {
   return (
-    <div className="flex flex-col space-y-1">
+    <div className={cn('flex flex-col space-y-1', className)}>
       <Label>{label}</Label>
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger>

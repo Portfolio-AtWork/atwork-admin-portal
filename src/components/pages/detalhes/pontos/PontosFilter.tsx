@@ -56,16 +56,16 @@ export const PontosFilter = () => {
 
   return (
     <div className="mb-4 p-4 rounded-md border">
-      <h2 className="text-lg font-medium mb-4">
-        {MessagesResource.FILTER_POINTS}
-      </h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="space-y-1">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex items-end space-x-4"
+      >
+        <div className="w-full">
           <DateField
             label={MessagesResource.DATE}
             register={register('DT_Ponto')}
             error={errors.DT_Ponto?.message}
-            max={formatDateToInput(getTodayDate())}
+            max={formatDateToInput(new Date())}
           />
         </div>
         <div className="flex justify-end space-x-2">

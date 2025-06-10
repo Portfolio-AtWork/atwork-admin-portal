@@ -9,17 +9,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 type YearSelectProps = {
   label?: string;
   value: number;
   onChange: (value: string) => void;
+  className?: string;
 };
 
 export const YearSelect = ({
   label = 'Ano',
   value,
   onChange,
+  className,
 }: YearSelectProps) => {
   const years = useMemo(() => {
     const currentYear = new Date().getFullYear();
@@ -27,7 +30,7 @@ export const YearSelect = ({
   }, []);
 
   return (
-    <div className="flex flex-col space-y-1">
+    <div className={cn('flex flex-col space-y-1', className)}>
       <Label>{label}</Label>
       <Select value={value.toString()} onValueChange={onChange}>
         <SelectTrigger>

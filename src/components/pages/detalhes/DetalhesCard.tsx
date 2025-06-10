@@ -1,4 +1,5 @@
 import { TABS, useDetalhes } from './DetalhesContext';
+import { JustificativasFilter } from './justificativas/JustificativasFilter';
 import { PontosFilter } from './pontos/PontosFilter';
 import { PontosTable } from './pontos/PontosTable';
 
@@ -41,7 +42,7 @@ const DetalhesCard = () => {
           <PontosTable pontos={fetchPontos.data} />
         </TabsContent>
         <TabsContent value={TABS.JUSTIFICATIVAS}>
-          <h1>Justificativas</h1>
+          <JustificativasFilter />
         </TabsContent>
       </Tabs>
     </>

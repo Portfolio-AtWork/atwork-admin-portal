@@ -85,6 +85,9 @@
     "SAIDA": "Saída",
     "REQUIRED": "Obrigatório",
     "JUSTIFICATIVAS": "Justificativas",
-    "POINTS": "Pontos"
+    "POINTS": "Pontos",
+    "MONTH": "Mês",
+    "YEAR": "Ano",
+    "INVALID": "Inválido"
   }
 }
