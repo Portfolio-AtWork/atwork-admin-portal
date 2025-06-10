@@ -41,7 +41,7 @@ export const FuncionariosTable = ({
   };
 
   function handleRowClick(row: GetFuncionariosByGrupoResult) {
-    navigate(`/funcionario/${row.ID}/pontos`);
+    navigate(`/funcionario/${row.ID}/detalhes`);
   }
 
   const openCancelFuncionarioModal = useCallback(

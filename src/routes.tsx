@@ -8,7 +8,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 const Home = lazy(() => import('./pages/Home'));
 const Funcionarios = lazy(() => import('./pages/Funcionarios'));
 const Login = lazy(() => import('./pages/Login'));
-const Pontos = lazy(() => import('./pages/Pontos'));
+const Detalhes = lazy(() => import('./pages/Detalhes'));
 const Settings = lazy(() => import('./pages/Settings'));
 
 export function AppRoutes() {
@@ -43,10 +43,10 @@ export function AppRoutes() {
             }
           />
           <Route
-            path="/funcionario/:id/pontos"
+            path="/funcionario/:id/detalhes"
             element={
               <PrivateRoute>
-                <Pontos />
+                <Detalhes />
               </PrivateRoute>
             }
           />
