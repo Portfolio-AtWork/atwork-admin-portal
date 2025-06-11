@@ -82,6 +82,18 @@
     "TOKEN_HAS_EXPIRED": "Login expirou, faça login novamente",
     "TIPO_PONTO": "Tipo de Ponto",
     "ENTRADA": "Entrada",
-    "SAIDA": "Saída"
+    "SAIDA": "Saída",
+    "REQUIRED": "Obrigatório",
+    "JUSTIFICATIVAS": "Justificativas",
+    "POINTS": "Pontos",
+    "MONTH": "Mês",
+    "YEAR": "Ano",
+    "INVALID": "Inválido",
+    "TIPO_JUSTIFICATIVA": "Tipo Justificativa",
+    "JUSTIFICATIVA": "Justificativa",
+    "IMAGEM_JUSTIFICATIVA": "Imagem da Justificativa",
+    "CLOSE": "Fechar",
+    "CREATE_PONTO": "Criar Ponto",
+    "NEW_PONTO": "Novo Ponto"
   }
 }

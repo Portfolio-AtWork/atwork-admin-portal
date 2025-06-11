@@ -5,6 +5,7 @@ import { ObjectResponse } from '../types/base';
 import {
   ApprovePontoCommand,
   CancelPontoCommand,
+  CreatePontoManualCommand,
   GetPontoByFuncionarioRequest,
   GetPontoByFuncionarioResult,
 } from '../types/ponto';
@@ -34,4 +35,11 @@ export async function cancelPonto(values: CancelPontoCommand) {
     CancelPontoCommand,
     AxiosResponse<ObjectResponse<boolean>>
   >(`${BASE_URL}/cancelPonto`, values);
+}
+
+export async function createPontoManual(values: CreatePontoManualCommand) {
+  return api.post<
+    CreatePontoManualCommand,
+    AxiosResponse<ObjectResponse<boolean>>
+  >(`${BASE_URL}/createPontoManual`, values);
 }
