@@ -1,4 +1,3 @@
-
 {
   "translation": {
     "MENU": "Menu",
@@ -61,7 +60,7 @@
     "SEE_EMPLOYEE_POINTS": "See employee points",
     "CONFIRM_CANCELLATION": "Confirm Cancellation",
     "CANCEL_EMPLOYEE_CONFIRMATION": "Are you sure you want to cancel the employee {funcionario}? This action cannot be undone.",
-    "YES": "Yes", 
+    "YES": "Yes",
     "NO": "No",
     "APPROVED": "Approved",
     "PENDING": "Pending",

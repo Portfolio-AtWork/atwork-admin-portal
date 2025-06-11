@@ -1,15 +1,14 @@
 import { Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogFooter,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { MessagesResource } from '@/i18n/resources';
@@ -31,7 +30,6 @@ export const CreateGroupDialog = ({
   onSubmit,
   isPending,
 }: CreateGroupDialogProps) => {
-  const { t } = useTranslation();
   const { register, handleSubmit } = useForm<NovoGrupoForm>();
 
   return (

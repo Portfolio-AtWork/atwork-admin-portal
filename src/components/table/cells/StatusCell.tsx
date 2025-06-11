@@ -3,12 +3,12 @@ import { Check, LoaderCircle, X } from 'lucide-react';
 import { TableCell } from '@/components/ui/table';
 import { MessagesResource } from '@/i18n/resources';
 
-interface StatusPontoCellProps {
-  ST_Ponto: string;
+interface StatusCellProps {
+  value: string;
 }
 
-function getTitle(st_ponto: string) {
-  switch (st_ponto) {
+function getTitle(value: string) {
+  switch (value) {
     case 'A':
       return MessagesResource.ACTIVE;
     case 'P':
@@ -16,12 +16,12 @@ function getTitle(st_ponto: string) {
     case 'C':
       return MessagesResource.CANCELED;
     default:
-      return st_ponto;
+      return value;
   }
 }
 
-function getIcon(ST_Ponto: string) {
-  switch (ST_Ponto) {
+function getIcon(value: string) {
+  switch (value) {
     case 'A':
       return <Check color="#16d057" />;
     case 'P':
@@ -29,13 +29,13 @@ function getIcon(ST_Ponto: string) {
     case 'C':
       return <X color="#ee0606" />;
     default:
-      return ST_Ponto;
+      return value;
   }
 }
 
-export const StatusPontoCell = ({ ST_Ponto }: StatusPontoCellProps) => {
-  const title = getTitle(ST_Ponto);
-  const icon = getIcon(ST_Ponto);
+export const StatusCell = ({ value }: StatusCellProps) => {
+  const title = getTitle(value);
+  const icon = getIcon(value);
 
   return <TableCell title={title}>{icon}</TableCell>;
 };

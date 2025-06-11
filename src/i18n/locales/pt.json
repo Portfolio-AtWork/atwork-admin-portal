@@ -88,6 +88,12 @@
     "POINTS": "Pontos",
     "MONTH": "Mês",
     "YEAR": "Ano",
-    "INVALID": "Inválido"
+    "INVALID": "Inválido",
+    "TIPO_JUSTIFICATIVA": "Tipo Justificativa",
+    "JUSTIFICATIVA": "Justificativa",
+    "IMAGEM_JUSTIFICATIVA": "Imagem da Justificativa",
+    "CLOSE": "Fechar",
+    "CREATE_PONTO": "Criar Ponto",
+    "NEW_PONTO": "Novo Ponto"
   }
 }

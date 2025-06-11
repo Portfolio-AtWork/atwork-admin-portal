@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { ConfirmationDialog } from '@/components/modals/ConfirmationDialog';
 import { DateCell } from '@/components/table/cells/DateCell';
-import { StatusPontoCell } from '@/components/table/cells/StatusPontoCell';
+import { StatusCell } from '@/components/table/cells/StatusCell';
 import { TipoPontoCell } from '@/components/table/cells/TipoPontoCell';
 import { TableActions } from '@/components/table/TableActions';
 import {
@@ -21,8 +21,10 @@ import { GetPontoByFuncionarioResult } from '@/services/types/ponto';
 
 export const PontosTable = ({
   pontos = [],
+  refetch,
 }: {
   pontos: GetPontoByFuncionarioResult[];
+  refetch: () => void;
 }) => {
   const approvePonto = useApprovePonto();
   const cancelPonto = useCancelPonto();
@@ -48,6 +50,7 @@ export const PontosTable = ({
         ID_Ponto: selectedPonto.ID,
       });
       setIsApproveDialogOpen(false);
+      refetch();
     }
   };
 
@@ -58,6 +61,7 @@ export const PontosTable = ({
         ID_Ponto: selectedPonto.ID,
       });
       setIsCancelDialogOpen(false);
+      refetch();
     }
   };
 
@@ -82,7 +86,7 @@ export const PontosTable = ({
           <TableBody>
             {(pontos || []).map((ponto: GetPontoByFuncionarioResult) => (
               <TableRow key={ponto.ID} className={getRowColor(ponto.ST_Ponto)}>
-                <StatusPontoCell ST_Ponto={ponto.ST_Ponto} />
+                <StatusCell value={ponto.ST_Ponto} />
                 <TipoPontoCell TP_Ponto={ponto.TP_Ponto} />
                 <DateCell value={ponto.DT_Ponto} />
                 <TableCell>
