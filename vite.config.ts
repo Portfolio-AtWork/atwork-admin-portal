@@ -49,4 +49,35 @@ export default defineConfig(() => ({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  test: {
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'lcov'],
+      reportsDirectory: './coverage',
+      exclude: [
+        'src/tests/**',
+        'src/mocks/**',
+        'src/**/__tests__/**',
+        '**/*.d.ts',
+        'src/components/ui/**',
+        'src/i18n/**',
+        'src/services/**',
+        'src/lib/**',
+        'src/config/**',
+        'src/types/**',
+        './dist/**',
+        'src/pages/**',
+        'src/**/*Context.*', // <- ignora arquivos terminando com Context e com qualquer extensão
+        'src/**/*Context',
+        'src/hooks/api/**',
+        '**/*.config.js',
+        '**/*.config.ts',
+        '**/*.config.mjs',
+        '**/*.config.cjs', // <- ignora arquivos terminando com Context e sem extensão
+      ],
+    },
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/tests/setup.ts',
+  },
 }));

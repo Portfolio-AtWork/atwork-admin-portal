@@ -12,7 +12,15 @@ const Header = () => {
     <header className="border-b bg-background">
       <div className="flex h-16 items-center px-4 gap-4">
         <SidebarTrigger>
-          <Button variant="ghost" size="icon">
+          <Button
+            title="toggle sidebar"
+            id="Header_Toggle_Button"
+            data-testid="header-toggle"
+            variant="ghost"
+            size="icon"
+            aria-label="Abrir menu lateral"
+            role="button"
+          >
             <Menu className="h-5 w-5" />
           </Button>
         </SidebarTrigger>

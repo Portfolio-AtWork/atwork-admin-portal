@@ -12,6 +12,7 @@ import {
 import { cn } from '@/lib/utils';
 
 type YearSelectProps = {
+  name?: string;
   label?: string;
   value: number;
   onChange: (value: string) => void;
@@ -19,6 +20,7 @@ type YearSelectProps = {
 };
 
 export const YearSelect = ({
+  name,
   label = 'Ano',
   value,
   onChange,
@@ -32,7 +34,7 @@ export const YearSelect = ({
   return (
     <div className={cn('flex flex-col space-y-1', className)}>
       <Label>{label}</Label>
-      <Select value={value.toString()} onValueChange={onChange}>
+      <Select name={name} value={value.toString()} onValueChange={onChange}>
         <SelectTrigger>
           <SelectValue placeholder="Selecione um ano" />
         </SelectTrigger>

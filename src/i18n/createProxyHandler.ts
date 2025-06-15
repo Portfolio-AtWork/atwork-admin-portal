@@ -19,7 +19,7 @@ export function createProxyHandler<TKeys extends string>(
 
       if (!hasKey) return key;
 
-      const baseString = _t(key);
+      const baseString = _t ? _t(key) : key;
       const result = new String(baseString) as StringWithOptionalParams;
 
       function withParameters(params: Record<string, never>): string {
