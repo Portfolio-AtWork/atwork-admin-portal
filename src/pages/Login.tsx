@@ -1,18 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
-import { Mail, Lock, UserPlus, Key } from 'lucide-react';
+import { Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { loginUser } from '@/services/authService';
@@ -141,78 +134,6 @@ const Login = () => {
               >
                 {loginMutation.isPending ? 'Entrando...' : 'Entrar'}
               </Button>
-
-              <div className="flex justify-between items-center mt-4">
-                {/* Create Account Dialog */}
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" className="px-0">
-                      <UserPlus className="mr-2 h-4 w-4" />
-                      Criar conta
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Criar nova conta</DialogTitle>
-                    </DialogHeader>
-                    <form
-                      onSubmit={handleCreateAccount}
-                      className="space-y-4 mt-4"
-                    >
-                      <div className="space-y-2">
-                        <Input
-                          type="email"
-                          placeholder="E-mail"
-                          value={newEmail}
-                          onChange={(e) => setNewEmail(e.target.value)}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Input
-                          type="password"
-                          placeholder="Senha"
-                          value={newPassword}
-                          onChange={(e) => setNewPassword(e.target.value)}
-                        />
-                      </div>
-                      <Button type="submit" className="w-full">
-                        Criar conta
-                      </Button>
-                    </form>
-                  </DialogContent>
-                </Dialog>
-
-                {/* Forgot Password Dialog */}
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" className="px-0">
-                      <Key className="mr-2 h-4 w-4" />
-                      Esqueci minha senha
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Recuperar senha</DialogTitle>
-                    </DialogHeader>
-                    <form
-                      onSubmit={handleResetPassword}
-                      className="space-y-4 mt-4"
-                    >
-                      <div className="space-y-2">
-                        <Input
-                          type="email"
-                          placeholder="E-mail"
-                          value={resetEmail}
-                          onChange={(e) => setResetEmail(e.target.value)}
-                        />
-                      </div>
-                      <Button type="submit" className="w-full">
-                        Enviar e-mail de recuperação
-                      </Button>
-                    </form>
-                  </DialogContent>
-                </Dialog>
-              </div>
             </form>
           </CardContent>
         </Card>
