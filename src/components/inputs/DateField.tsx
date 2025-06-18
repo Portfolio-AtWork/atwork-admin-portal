@@ -1,9 +1,11 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 interface DateInputProps {
+  id?: string;
   label: string;
   placeholder?: string;
   error?: string;
@@ -12,16 +14,22 @@ interface DateInputProps {
 }
 
 export const DateField = ({
+  id,
   label,
   placeholder = '',
   error,
   register,
   max,
 }: DateInputProps) => {
+  if (!id) {
+    id = uuidv4();
+  }
+
   return (
     <>
-      {label && <Label>{label}</Label>}
+      {label && <Label htmlFor={id}>{label}</Label>}
       <Input
+        id={id}
         type="date"
         placeholder={placeholder || label}
         {...register}
